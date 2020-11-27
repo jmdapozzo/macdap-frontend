@@ -1,0 +1,21 @@
+{
+    "title": {
+        "dataTable": "Utilisateurs",
+        "modalAdd": "Ajouter un nouvel utilisateur",
+        "modalEdit": "Éditer un utilisateur"
+    },
+    "fieldLabel": {
+        "id": "ID",
+        "first": "Prénom",
+        "last": "Nom",
+        "email": "Courriel",
+        "phone": "Téléphone",
+        "location": "Localité",
+        "hobby": "Hobby",
+        "actions": "Actions"
+    },
+    "fieldPlaceholder": {
+        "phone": "pe. 555-555-1212",
+        "location": "Ville, Province"
+    }
+}

@@ -1,0 +1,20 @@
+{
+	"error": "Erreur",
+	"mission": "Soyez en contrôle de votre environnement!",
+	"navBar": {
+		"home": "Accueil",
+		"sopfeu": "SOPFEU",
+		"test": "Test",
+		"login": "Connexion"
+	},
+	"buttonLabel": {
+		"add": "Ajouter",
+		"edit": "Éditer",
+		"delete": "Supprimer",
+		"submit": "Soumettre",
+		"export": "Exporter"
+	},
+	"alertMsg": {
+		"areYouSureDeleteItem": "Ëtes-vous certain de vouloir supprimer cet item?"
+	}
+}

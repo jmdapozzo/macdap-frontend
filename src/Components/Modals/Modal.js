@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import AddEditForm from '../Forms/FormAddEdit'
 
 function ModalForm(props) {
+
+  const { t, i18n } = useTranslation(['users', 'common']);
+
   const [modal, setModal] = useState(false)
 
   const toggle = () => {
@@ -15,20 +19,20 @@ function ModalForm(props) {
   let button = ''
   let title = ''
 
-  if(label === 'Edit'){
+  if (label === t('common:buttonLabel.edit')) {
     button = <Button
-              color="warning"
-              onClick={toggle}
-              style={{float: "left", marginRight:"10px"}}>{label}
-            </Button>
-    title = 'Edit Item'
+      color="warning"
+      onClick={toggle}
+      style={{ float: "left", marginRight: "10px" }}>{label}
+    </Button>
+    title = t('title.modalEdit')
   } else {
     button = <Button
-              color="success"
-              onClick={toggle}
-              style={{float: "left", marginRight:"10px"}}>{label}
-            </Button>
-    title = 'Add New Item'
+      color="success"
+      onClick={toggle}
+      style={{ float: "left", marginRight: "10px" }}>{label}
+    </Button>
+    title = t('title.modalAdd')
   }
 
 

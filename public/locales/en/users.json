@@ -1,0 +1,21 @@
+{
+    "title": {
+        "dataTable": "Users",
+        "modalAdd": "Add New User",
+        "modalEdit": "Edit User"
+    },
+    "fieldLabel": {
+        "id": "ID",
+        "first": "First Name",
+        "last": "Last Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "location": "Location",
+        "hobby": "Hobby",
+        "actions": "Actions"
+    },
+    "fieldPlaceholder":{
+        "phone": "ex. 555-555-1212",
+        "location": "City, State"
+    }
+}

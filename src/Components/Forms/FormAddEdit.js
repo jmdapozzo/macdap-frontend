@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 function AddEditForm(props) {
-  const[form, setValues] = useState({
+
+  const { t, i18n } = useTranslation(['users', 'common']);
+
+  const [form, setValues] = useState({
     id: 0,
     first: '',
     last: '',
@@ -37,7 +41,7 @@ function AddEditForm(props) {
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
+        if (Array.isArray(item)) {
           props.addItemToState(item[0])
           props.toggle()
         } else {
@@ -66,8 +70,7 @@ function AddEditForm(props) {
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
-          // console.log(item[0])
+        if (Array.isArray(item)) {
           props.updateState(item[0])
           props.toggle()
         } else {
@@ -78,7 +81,7 @@ function AddEditForm(props) {
   }
 
   useEffect(() => {
-    if(props.item){
+    if (props.item) {
       const { id, first, last, email, phone, location, hobby } = props.item
       setValues({ id, first, last, email, phone, location, hobby })
     }
@@ -87,30 +90,30 @@ function AddEditForm(props) {
   return (
     <Form onSubmit={props.item ? submitFormEdit : submitFormAdd}>
       <FormGroup>
-        <Label for="first">First Name</Label>
+        <Label for="first">{t('fieldLabel.first')}</Label>
         <Input type="text" name="first" id="first" onChange={onChange} value={form.first === null ? '' : form.first} />
       </FormGroup>
       <FormGroup>
-        <Label for="last">Last Name</Label>
-        <Input type="text" name="last" id="last" onChange={onChange} value={form.last === null ? '' : form.last}  />
+        <Label for="last">{t('fieldLabel.last')}</Label>
+        <Input type="text" name="last" id="last" onChange={onChange} value={form.last === null ? '' : form.last} />
       </FormGroup>
       <FormGroup>
-        <Label for="email">Email</Label>
-        <Input type="email" name="email" id="email" onChange={onChange} value={form.email === null ? '' : form.email}  />
+        <Label for="email">{t('fieldLabel.email')}</Label>
+        <Input type="email" name="email" id="email" onChange={onChange} value={form.email === null ? '' : form.email} />
       </FormGroup>
       <FormGroup>
-        <Label for="phone">Phone</Label>
-        <Input type="text" name="phone" id="phone" onChange={onChange} value={form.phone === null ? '' : form.phone}  placeholder="ex. 555-555-5555" />
+        <Label for="phone">{t('fieldLabel.phone')}</Label>
+        <Input type="text" name="phone" id="phone" onChange={onChange} value={form.phone === null ? '' : form.phone} placeholder={t('fieldPlaceholder.phone')} />
       </FormGroup>
       <FormGroup>
-        <Label for="location">Location</Label>
-        <Input type="text" name="location" id="location" onChange={onChange} value={form.location === null ? '' : form.location}  placeholder="City, State" />
+        <Label for="location">{t('fieldLabel.location')}</Label>
+        <Input type="text" name="location" id="location" onChange={onChange} value={form.location === null ? '' : form.location} placeholder={t('fieldPlaceholder.location')} />
       </FormGroup>
       <FormGroup>
-        <Label for="hobby">Hobby</Label>
-        <Input type="text" name="hobby" id="hobby" onChange={onChange} value={form.hobby}  />
+        <Label for="hobby">{t('fieldLabel.hobby')}</Label>
+        <Input type="text" name="hobby" id="hobby" onChange={onChange} value={form.hobby} />
       </FormGroup>
-      <Button>Submit</Button>
+      <Button>{t('common:buttonLabel.submit')}</Button>
     </Form>
   )
 }
