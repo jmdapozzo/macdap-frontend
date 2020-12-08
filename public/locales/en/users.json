@@ -1,8 +1,9 @@
 {
-    "title": {
-        "dataTable": "Users",
-        "modalAdd": "Add New User",
-        "modalEdit": "Edit User"
+    "title": "Users",
+
+    "dialogTitle": {
+        "add": "Add New User",
+        "edit": "Edit User"
     },
     "fieldLabel": {
         "id": "ID",

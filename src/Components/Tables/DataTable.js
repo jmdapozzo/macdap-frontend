@@ -1,16 +1,16 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { Table, Button } from 'reactstrap';
-import ModalForm from '../Modals/Modal'
+import { Table, Button } from 'react-bootstrap';
+import UserForm from '../modals/UserForm'
 
 function DataTable(props) {
 
-  const { t, i18n } = useTranslation(['users', 'common']);
+  const { t } = useTranslation(['users', 'common']);
 
   const deleteItem = id => {
     let confirmDelete = window.confirm(t('common:alertMsg.areYouSureDeleteItem'))
     if (confirmDelete) {
-      fetch('http://localhost:3000/users', {
+      fetch('http://localhost:3001/users', {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json'
@@ -39,9 +39,9 @@ function DataTable(props) {
         <td>{item.hobby}</td>
         <td>
           <div style={{ width: "160px" }}>
-            <ModalForm buttonLabel={t('common:buttonLabel.edit')} item={item} updateState={props.updateState} />
+            <UserForm buttonLabel={t('common:buttonLabel.edit')} item={item} updateState={props.updateState} />
             {' '}
-            <Button color="danger" onClick={() => deleteItem(item.id)}>{t('common:buttonLabel.delete')}</Button>
+            <Button variant="danger" onClick={() => deleteItem(item.id)}>{t('common:buttonLabel.delete')}</Button>
           </div>
         </td>
       </tr>

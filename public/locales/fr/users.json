@@ -1,8 +1,9 @@
 {
-    "title": {
-        "dataTable": "Utilisateurs",
-        "modalAdd": "Ajouter un nouvel utilisateur",
-        "modalEdit": "Éditer un utilisateur"
+    "title": "Utilisateurs",
+
+    "dialogTitle": {
+        "add": "Ajouter un nouvel utilisateur",
+        "edit": "Éditer un utilisateur"
     },
     "fieldLabel": {
         "id": "ID",

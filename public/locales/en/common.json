@@ -1,19 +1,27 @@
 {
+	"company": "MacDap Inc.",
+	"brand": "MacDap",
+	"language": "English",
+	
 	"error": "Error",
+
 	"mission": "Be in control of your environment!",
+
 	"navBar": {
 		"home": "Home",
-		"sopfeu": "SOPFEU",
-		"test": "Test",
 		"login": "Login"
 	},
+
 	"buttonLabel": {
+		"open": "Open",
+		"close": "Close",
 		"add": "Add",
 		"edit": "Edit",
 		"delete": "Delete",
-		"submit": "Submit",
+		"saveChanges": "Save Changes",
 		"export": "Export"
 	},
+
 	"alertMsg": {
 		"areYouSureDeleteItem": "Are you sure you want to delete this item?"
 	}
