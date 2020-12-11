@@ -1,15 +1,16 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './i18n';
+import { Spinner } from 'react-bootstrap';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './i18n';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback="Loading...">
+    <Suspense fallback={<Spinner animation="border" />}>
       <App />
     </Suspense>
   </React.StrictMode>,

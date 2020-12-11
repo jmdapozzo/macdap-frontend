@@ -1,29 +1,28 @@
 import React, { useReducer } from 'react'
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Jumbotron, Image, Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import Navigation from "./components/Navigation";
-import TemplateContent from "./components/TemplateContent";
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import Header from "./components/Header";
 import Footer from "./components/Footer";
-import HomeContent from "./components/HomeContent";
-import SOPFEU from './components/TemplateContent';
-import Users from './components/Users';
-import Template from './components/TemplateContent';
-import logo from './images/logo/noBackgroundNoText.svg';
+import HomePage from "./components/HomePage";
+import SopfeuPage from './components/SopfeuPage';
+import UserPage from './components/UserPage';
+import TemplatePage from './components/TemplatePage';
 
 import './App.css';
 
-const initialState = <HomeContent />
+//checkout https://www.npmjs.com/package/react-router-bootstrap
+
+const initialState = <HomePage />
 const reducer = (state, action) => {
   switch (action) {
     case 'home':
-      return <HomeContent />;
+      return <HomePage />;
     case 'sopfeu':
-      return <SOPFEU />;
+      return <SopfeuPage />;
     case 'users':
-      return <Users />;
+      return <UserPage />;
     case 'template':
-      return <Template />;
+      return <TemplatePage />;
     default:
       return null;
   }
@@ -36,20 +35,8 @@ function App(props) {
 
   return (
     <div className="App">
-      <Jumbotron className="mb-0">
-        <div className="d-inline-flex p-3">
-          <div className="p-2">
-            <Image src={logo} width={100} height={100} />
-          </div>
-          <div className="p-2">
-            <h1 className="company">{t('company')}</h1>
-            <h3>{t('mission')}</h3>
-          </div>
-        </div>
-      </Jumbotron>
 
-
-      <Navigation />
+      <Header />
 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand className="navbar-brand" onClick={() => dispatch('home')}>{t('brand')}</Navbar.Brand>
@@ -73,24 +60,12 @@ function App(props) {
         </Navbar.Collapse>
       </Navbar>
 
-
-
       <div>
         {page}
       </div>
-      {/*       <BrowserRouter>
-        <Navigation />
-        <div className="App-header">
-          <Switch>
-            <Route path="/" exact component={() => <HomeContent />} />
-            <Route path="/sopfeu" exact component={() => <TemplateContent name="sopfeu" />} />
-            <Route path="/users" exact component={() => <Users />} />
-            <Route path="/template" exact component={() => <TemplateContent name="template" />} />
-          </Switch>
-        </div>
-      </BrowserRouter>
- */}
-      <Footer />
+
+      {/* <Footer /> */}
+
     </div>
   );
 };

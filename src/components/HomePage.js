@@ -1,10 +1,10 @@
 import React from 'react';
 
-function HomeContent() {
+function HomePage() {
     return (
         <div>
           <h1>Home</h1>
         </div>
       );
   }
-export default HomeContent;
+export default HomePage;

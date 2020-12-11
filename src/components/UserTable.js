@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Table, Button } from 'react-bootstrap';
-import UserForm from '../modals/UserForm'
+import UserForm from './UserForm'
 
-function DataTable(props) {
+function UserTable(props) {
 
   const { t } = useTranslation(['users', 'common']);
 
@@ -69,4 +69,4 @@ function DataTable(props) {
   )
 }
 
-export default DataTable
+export default UserTable

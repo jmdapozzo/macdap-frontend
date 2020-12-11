@@ -13,6 +13,14 @@
 		"extreme": "Extreme"
 	},
 
+	"fieldLabel": {
+        "name": "Region",
+        "updatedAt": "Last Update",
+        "riskNow": "Risk now",
+        "riskTomorrow": "Risk Tomorrow",
+        "riskAfterTomorrow": "Risk After Tomorrow"
+    },
+
 	"error": {
 		"noCanvasSupport": "Sorry, your browser doesn't support the <canvas> element."
 	}

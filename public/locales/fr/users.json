@@ -5,6 +5,7 @@
         "add": "Ajouter un nouvel utilisateur",
         "edit": "Éditer un utilisateur"
     },
+
     "fieldLabel": {
         "id": "ID",
         "first": "Prénom",
@@ -15,6 +16,7 @@
         "hobby": "Hobby",
         "actions": "Actions"
     },
+    
     "fieldPlaceholder": {
         "phone": "pe. 555-555-1212",
         "location": "Ville, Province"

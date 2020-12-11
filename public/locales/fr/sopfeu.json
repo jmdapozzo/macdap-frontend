@@ -13,6 +13,14 @@
 		"extreme": "Extrême"
 	},
 
+	"fieldLabel": {
+        "name": "Région",
+        "updatedAt": "Dernière mise à jour",
+        "riskNow": "Risque aujourd'hui",
+        "riskTomorrow": "Risque demain",
+        "riskAfterTomorrow": "Risque après-demain"
+    },
+
 	"error": {
 		"noCanvasSupport": "Désolé, votre fureteur ne supporte pas l'élément <canvas>."
 	}

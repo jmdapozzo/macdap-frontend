@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col } from 'react-bootstrap';
-import UserForm from './modals/UserForm'
-import DataTable from './tables/DataTable'
+import UserForm from './UserForm'
+import UserTable from './UserTable'
 import { CSVLink } from "react-csv"
 
-function Users(props) {
+function UserPage(props) {
 
   const { t } = useTranslation(['users', 'common']);
   const [items, setItems] = useState([])
@@ -37,10 +37,10 @@ function Users(props) {
   }, []);
 
   return (
-    <Container fluid className="Users">
+    <Container fluid>
       <Row>
         <Col>
-          <DataTable items={items} updateState={updateState} deleteItemFromState={deleteItemFromState} />
+          <UserTable items={items} updateState={updateState} deleteItemFromState={deleteItemFromState} />
         </Col>
       </Row>
       <Row>
@@ -60,4 +60,4 @@ function Users(props) {
   )
 }
 
-export default Users
+export default UserPage

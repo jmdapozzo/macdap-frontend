@@ -111,7 +111,7 @@ function UserForm(props) {
     if (props.item) {
       const { id, first, last, email, phone, location, hobby } = props.item;
       setValues({ id, first, last, email, phone, location, hobby });
-    } 
+    }
   }, [false]);
 
   return (
