@@ -1,34 +1,100 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Container, Row, Col } from 'react-bootstrap';
+import ReactSpeedometer from 'react-d3-speedometer';
 
-function SopfeuForm({ items, index }) {
+function SopfeuForm({ show, handleClose, items, index }) {
 
-  const { t, i18n } = useTranslation(['sopfeu', 'common']);
+  const { t } = useTranslation(['sopfeu', 'common']);
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentValue, setCurrentValue] = useState(0);
+  const handlePrevious = () => {
+    setCurrentIndex(currentIndex - 1);
+    setCurrentValue(items[currentIndex].riskNow);
+  }
+  const handleNext = () => {
+    setCurrentIndex(currentIndex + 1);
+    setCurrentValue(items[currentIndex].riskNow);
+  }
+
+  useEffect(() => {
+    setCurrentIndex(index)
+  }, [index])
 
   return (
-    <div>
-      <Button variant="success" onClick={handleShow} style={{ float: "left", marginRight: "10px" }}>Open</Button>
+    <Modal show={show} onHide={handleClose} size="lg" dialogClassName={"primaryModal"}>
+      <Modal.Header closeButton>
+        <Modal.Title>{t('fireRiskTitle')}</Modal.Title>
+      </Modal.Header>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
+      <Modal.Body>
+          <ReactSpeedometer
+            width={500}
+            minValue={1}
+            maxValue={5}
+            value={currentValue}
+            needleHeightRatio={0.7}
+            currentValueText={t('fireRiskTitle')}
+            customSegmentLabels={[
+              {
+                text: t('fireRisk.low'),
+                position: 'INSIDE',
+                color: '#555',
+              },
+              {
+                text: t('fireRisk.moderate'),
+                position: 'INSIDE',
+                color: '#555',
+              },
+              {
+                text: t('fireRisk.high'),
+                position: 'INSIDE',
+                color: '#555',
+                fontSize: '19px',
+              },
+              {
+                text: t('fireRisk.veryHigh'),
+                position: 'INSIDE',
+                color: '#555',
+              },
+              {
+                text: t('fireRisk.extreme'),
+                position: 'INSIDE',
+                color: '#555',
+              },
+            ]}
+            ringWidth={47}
+            needleTransitionDuration={3333}
+            needleTransition="easeElastic"
+            needleColor={'#90f2ff'}
+            textColor={'#d8dee9'}
+            segmentColors={[
+              "#528EDC",
+              "#87C905",
+              "#E3E226",
+              "#F58723",
+              "#CC170E",
+            ]}
+          />
+      </Modal.Body>
 
-        <Modal.Body>
-          <p>Index is {index}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>{t('common:buttonLabel.close')}</Button>
-          <Button variant="primary" type="submit" form="userForm" onClick={handleClose}>{t('common:buttonLabel.saveChanges')}</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+      <Modal.Footer>
+        <Container>
+          <Row>
+            <Col md="auto">
+              <Button variant="primary" onClick={handlePrevious}>{t('common:buttonLabel.previous')}</Button>
+            </Col>
+            <Col>
+              <h1>{items[currentIndex].name}</h1>
+            </Col>
+            <Col md="auto">
+              <Button variant="primary" onClick={handleNext}>{t('common:buttonLabel.next')}</Button>
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Footer>
+    </Modal >
   )
 }
 

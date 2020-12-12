@@ -19,7 +19,9 @@
 		"edit": "Éditer",
 		"delete": "Supprimer",
 		"saveChanges": "Sauvegarder",
-		"export": "Exporter"
+		"export": "Exporter",
+		"next": "Suivant",
+		"previous": "Précédent"
 	},
 
 	"alertMsg": {

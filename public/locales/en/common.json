@@ -19,7 +19,9 @@
 		"edit": "Edit",
 		"delete": "Delete",
 		"saveChanges": "Save Changes",
-		"export": "Export"
+		"export": "Export",
+		"next": "Next",
+		"previous": "Previous"
 	},
 
 	"alertMsg": {
