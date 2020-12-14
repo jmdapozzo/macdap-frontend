@@ -7,35 +7,47 @@ function SopfeuForm({ show, handleClose, items, index }) {
 
   const { t } = useTranslation(['sopfeu', 'common']);
 
+  function SetButtonState(newIndex) {
+    const leftButton = document.getElementById('left-button');
+    const rightButton = document.getElementById('right-button');
+    leftButton.disabled = newIndex === 0;
+    rightButton.disabled = newIndex === (items.length - 1);
+  }
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentValue, setCurrentValue] = useState(0);
   const handlePrevious = () => {
-    setCurrentIndex(currentIndex - 1);
-    setCurrentValue(items[currentIndex].riskNow);
+    const newIndex = currentIndex - 1;
+    SetButtonState(newIndex);
+    setCurrentIndex(newIndex);
   }
   const handleNext = () => {
-    setCurrentIndex(currentIndex + 1);
-    setCurrentValue(items[currentIndex].riskNow);
+    const newIndex = currentIndex + 1;
+    SetButtonState(newIndex);
+    setCurrentIndex(newIndex);
   }
 
   useEffect(() => {
-    setCurrentIndex(index)
+    SetButtonState(index);
+    setCurrentIndex(index);
   }, [index])
 
   return (
-    <Modal show={show} onHide={handleClose} size="lg" dialogClassName={"primaryModal"}>
+    <Modal show={show} onHide={handleClose} dialogClassName={"modal-90w modal-dialog primaryModal"}>
       <Modal.Header closeButton>
         <Modal.Title>{t('fireRiskTitle')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
+        <Row className="justify-content-md-center">
           <ReactSpeedometer
             width={500}
-            minValue={1}
-            maxValue={5}
-            value={currentValue}
+            minValue={0.5}
+            maxValue={5.5}
+            paddingHorizontal={0}
+            value={items[currentIndex].riskNow === 0 ? 0.5 : items[currentIndex].riskNow}
             needleHeightRatio={0.7}
-            currentValueText={t('fireRiskTitle')}
+            currentValueText={items[currentIndex].name}
+            valueTextFontSize={20}
             customSegmentLabels={[
               {
                 text: t('fireRisk.low'),
@@ -77,19 +89,18 @@ function SopfeuForm({ show, handleClose, items, index }) {
               "#CC170E",
             ]}
           />
+        </Row>
+
       </Modal.Body>
 
       <Modal.Footer>
         <Container>
           <Row>
-            <Col md="auto">
-              <Button variant="primary" onClick={handlePrevious}>{t('common:buttonLabel.previous')}</Button>
+            <Col>
+              <Button id="left-button" className="float-left" variant="primary" onClick={handlePrevious}>{t('common:buttonLabel.previous')}</Button>
             </Col>
             <Col>
-              <h1>{items[currentIndex].name}</h1>
-            </Col>
-            <Col md="auto">
-              <Button variant="primary" onClick={handleNext}>{t('common:buttonLabel.next')}</Button>
+              <Button id="right-button" className="float-right" variant="primary" onClick={handleNext}>{t('common:buttonLabel.next')}</Button>
             </Col>
           </Row>
         </Container>
