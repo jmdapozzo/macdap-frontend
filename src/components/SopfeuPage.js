@@ -5,25 +5,35 @@ import SopfeuTable from './SopfeuTable'
 
 function SopfeuPage(props) {
 
-  const { t } = useTranslation(['users', 'common']);
-  const [items, setItems] = useState([])
+  const { t } = useTranslation(['sopfeu', 'common']);
 
-  const getItems = () => {
+  const [riskColors, setRiskColors] = useState([]);
+  const [fireRisks, setFireRisks] = useState([]);
+
+  const getColors = () => {
+    fetch('http://localhost:3001/sopfeu/risk-colors')
+      .then(response => response.json())
+      .then(riskColors => setRiskColors(riskColors))
+      .catch(err => console.log(err))
+  };
+
+  const getFireRisks = () => {
     fetch('http://localhost:3001/sopfeu/fire-risks')
       .then(response => response.json())
-      .then(items => setItems(items))
+      .then(fireRisks => setFireRisks(fireRisks))
       .catch(err => console.log(err))
-  }
+  };
 
   useEffect(() => {
-    getItems()
+    getColors()
+    getFireRisks()
   }, []);
 
   return (
     <Container fluid>
       <Row>
         <Col>
-          <SopfeuTable items={items} />
+          <SopfeuTable riskColors={riskColors} fireRisks={fireRisks} />
         </Col>
       </Row>
     </Container>

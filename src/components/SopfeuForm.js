@@ -1,38 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Modal, Button, Container, Row, Col } from 'react-bootstrap';
 import ReactSpeedometer from 'react-d3-speedometer';
 
-function SopfeuForm({ show, handleClose, items, index }) {
+function SopfeuForm({ show, handleClose, riskColors, fireRisks, selectedFireRiskIndex }) {
 
   const { t } = useTranslation(['sopfeu', 'common']);
 
-  function SetButtonState(newIndex) {
+  const setButtonState = useCallback((newFireRiskIndex) => {
     const leftButton = document.getElementById('left-button');
     const rightButton = document.getElementById('right-button');
-    leftButton.disabled = newIndex === 0;
-    rightButton.disabled = newIndex === (items.length - 1);
-  }
+    leftButton.disabled = newFireRiskIndex === 0;
+    rightButton.disabled = newFireRiskIndex === (fireRisks.length - 1);
+  }, [fireRisks.length]);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentFireRiskIndex, setCurrentFireRiskIndex] = useState(0);
   const handlePrevious = () => {
-    const newIndex = currentIndex - 1;
-    SetButtonState(newIndex);
-    setCurrentIndex(newIndex);
-  }
+    const newFireRiskIndex = currentFireRiskIndex - 1;
+    setButtonState(newFireRiskIndex);
+    setCurrentFireRiskIndex(newFireRiskIndex);
+  };
+  
   const handleNext = () => {
-    const newIndex = currentIndex + 1;
-    SetButtonState(newIndex);
-    setCurrentIndex(newIndex);
-  }
+    const newFireRiskIndex = currentFireRiskIndex + 1;
+    setButtonState(newFireRiskIndex);
+    setCurrentFireRiskIndex(newFireRiskIndex);
+  };
 
   useEffect(() => {
-    SetButtonState(index);
-    setCurrentIndex(index);
-  }, [index])
+    setButtonState(selectedFireRiskIndex);
+    setCurrentFireRiskIndex(selectedFireRiskIndex);
+  }, [selectedFireRiskIndex, setButtonState])
 
+  //animation is set to false to avoir warning findDOMNode is deprecated in StrictMode...
   return (
-    <Modal show={show} onHide={handleClose} dialogClassName={"modal-90w modal-dialog primaryModal"}>
+    <Modal animation={false} show={show} onHide={handleClose} dialogClassName={"primaryModal"}>
       <Modal.Header closeButton>
         <Modal.Title>{t('fireRiskTitle')}</Modal.Title>
       </Modal.Header>
@@ -44,10 +46,10 @@ function SopfeuForm({ show, handleClose, items, index }) {
             minValue={0.5}
             maxValue={5.5}
             paddingHorizontal={0}
-            value={items[currentIndex].riskNow === 0 ? 0.5 : items[currentIndex].riskNow}
+            value={fireRisks[currentFireRiskIndex].riskNow === 0 ? 0.5 : fireRisks[currentFireRiskIndex].riskNow}
             needleHeightRatio={0.7}
-            currentValueText={items[currentIndex].name}
-            valueTextFontSize={20}
+            currentValueText={fireRisks[currentFireRiskIndex].name}
+            valueTextFontSize={"20px"}
             customSegmentLabels={[
               {
                 text: t('fireRisk.low'),
@@ -82,11 +84,11 @@ function SopfeuForm({ show, handleClose, items, index }) {
             needleColor={'#90f2ff'}
             textColor={'#d8dee9'}
             segmentColors={[
-              "#528EDC",
-              "#87C905",
-              "#E3E226",
-              "#F58723",
-              "#CC170E",
+              riskColors[1],
+              riskColors[2],
+              riskColors[3],
+              riskColors[4],
+              riskColors[5],
             ]}
           />
         </Row>

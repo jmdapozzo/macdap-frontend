@@ -3,32 +3,28 @@ import { useTranslation } from 'react-i18next';
 import { Table } from 'react-bootstrap';
 import SopfeuForm from './SopfeuForm';
 
-function SopfeuTable({ items }) {
+function SopfeuTable({ riskColors, fireRisks }) {
 
   const { t, i18n } = useTranslation(['sopfeu', 'common']);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-
-  const onRowClickHandle = (index) => {
-    setSelectedItemIndex(index);
+  const handleOnRowClick = (index) => {
+    setSelectedFireRiskIndex(index);
     setShow(true);
   }
 
-  const sopfeuForm = <SopfeuForm />;
+  const [selectedFireRiskIndex, setSelectedFireRiskIndex] = useState(null);
 
-  const rowItems = items.map((item, index) => {
-    const updatedAtDate = new Date(item.updatedAt);
+  const rowItems = fireRisks.map((fireRisk, index) => {
+    const updatedAtDate = new Date(fireRisk.updatedAt);
     return (
-      <tr key={item.id} onClick={() => onRowClickHandle(index)}>
-        <td>{item.name}</td>
+      <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
+        <td>{fireRisk.name}</td>
         <td>{updatedAtDate.toLocaleString(i18n.language)}</td>
-        <td>{t(item.riskNowKey)}</td>
-        <td>{t(item.riskTomorrowKey)}</td>
-        <td>{t(item.riskAfterTomorrowKey)}</td>
+        <td style={{backgroundColor: riskColors[fireRisk.riskNow]}}>{t(fireRisk.riskNowKey)}</td>
+        <td style={{backgroundColor: riskColors[fireRisk.riskTomorrow]}}>{t(fireRisk.riskTomorrowKey)}</td>
+        <td style={{backgroundColor: riskColors[fireRisk.riskAfterTomorrow]}}>{t(fireRisk.riskAfterTomorrowKey)}</td>
       </tr>
     )
   })
@@ -49,7 +45,7 @@ function SopfeuTable({ items }) {
           {rowItems}
         </tbody>
       </Table>
-      {show ? <SopfeuForm show={show} handleClose={handleClose} items={items} index={selectedItemIndex} /> : null}
+      {show ? <SopfeuForm show={show} handleClose={handleClose} riskColors={riskColors} fireRisks={fireRisks} selectedFireRiskIndex={selectedFireRiskIndex} /> : null}
     </div>
   )
 }
