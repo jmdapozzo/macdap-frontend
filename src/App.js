@@ -60,11 +60,9 @@ function App(props) {
         </Navbar.Collapse>
       </Navbar>
 
-      <div>
-        {page}
-      </div>
+      {page}
 
-      {/* <Footer /> */}
+      <Footer />
 
     </div>
   );
