@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { Jumbotron, Image } from 'react-bootstrap';
-import logo from '../images/logo/noBackgroundNoText.svg';
+import { Jumbotron } from 'react-bootstrap';
 
 
 function Footer() {
@@ -12,8 +11,8 @@ function Footer() {
     <div className="footer">
       <Jumbotron className="mb-0">
         <div className="d-inline-flex p-3">
-          <p class="m-0 text-center">
-            Copyright &copy; {t('company')} {new Date().getFullYear()}
+          <p className="m-0 text-center">
+            Copyright &copy; {t('company')} 2020 - {new Date().getFullYear()}
           </p>
         </div>
       </Jumbotron>

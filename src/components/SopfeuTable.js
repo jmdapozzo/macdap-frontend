@@ -22,9 +22,9 @@ function SopfeuTable({ riskColors, fireRisks }) {
       <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
         <td>{fireRisk.name}</td>
         <td>{updatedAtDate.toLocaleString(i18n.language)}</td>
-        <td style={{backgroundColor: riskColors[fireRisk.riskNow]}}>{t(fireRisk.riskNowKey)}</td>
-        <td style={{backgroundColor: riskColors[fireRisk.riskTomorrow]}}>{t(fireRisk.riskTomorrowKey)}</td>
-        <td style={{backgroundColor: riskColors[fireRisk.riskAfterTomorrow]}}>{t(fireRisk.riskAfterTomorrowKey)}</td>
+        <td style={{ backgroundColor: riskColors[fireRisk.riskNow] }}>{t(fireRisk.riskNowKey)}</td>
+        <td style={{ backgroundColor: riskColors[fireRisk.riskTomorrow] }}>{t(fireRisk.riskTomorrowKey)}</td>
+        <td style={{ backgroundColor: riskColors[fireRisk.riskAfterTomorrow] }}>{t(fireRisk.riskAfterTomorrowKey)}</td>
       </tr>
     )
   })

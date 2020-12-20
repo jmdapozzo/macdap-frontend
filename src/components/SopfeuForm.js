@@ -34,7 +34,7 @@ function SopfeuForm({ show, handleClose, riskColors, fireRisks, selectedFireRisk
 
   //animation is set to false to avoir warning findDOMNode is deprecated in StrictMode...
   return (
-    <Modal animation={false} show={show} onHide={handleClose} dialogClassName={"primaryModal"}>
+    <Modal show={show} animation={false} onHide={handleClose} dialogClassName={"primaryModal"}>
       <Modal.Header closeButton>
         <Modal.Title>{t('fireRiskTitle')}</Modal.Title>
       </Modal.Header>
