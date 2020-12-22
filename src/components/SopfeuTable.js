@@ -2,32 +2,20 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Table } from 'react-bootstrap';
 import SopfeuForm from './SopfeuForm';
+import { FaFire } from 'react-icons/fa';
 
 function SopfeuTable({ riskColors, fireRisks }) {
 
   const { t, i18n } = useTranslation(['sopfeu', 'common']);
 
+  const [selectedFireRiskIndex, setSelectedFireRiskIndex] = useState(null);
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleOnRowClick = (index) => {
     setSelectedFireRiskIndex(index);
     setShow(true);
   }
-
-  const [selectedFireRiskIndex, setSelectedFireRiskIndex] = useState(null);
-
-  const rowItems = fireRisks.map((fireRisk, index) => {
-    const updatedAtDate = new Date(fireRisk.updatedAt);
-    return (
-      <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
-        <td>{fireRisk.name}</td>
-        <td>{updatedAtDate.toLocaleString(i18n.language)}</td>
-        <td style={{ backgroundColor: riskColors[fireRisk.riskNow] }}>{t(fireRisk.riskNowKey)}</td>
-        <td style={{ backgroundColor: riskColors[fireRisk.riskTomorrow] }}>{t(fireRisk.riskTomorrowKey)}</td>
-        <td style={{ backgroundColor: riskColors[fireRisk.riskAfterTomorrow] }}>{t(fireRisk.riskAfterTomorrowKey)}</td>
-      </tr>
-    )
-  })
 
   return (
     <div>
@@ -42,7 +30,19 @@ function SopfeuTable({ riskColors, fireRisks }) {
           </tr>
         </thead>
         <tbody>
-          {rowItems}
+          {
+            fireRisks.map(
+              (fireRisk, index) => (
+                <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
+                  <td>{fireRisk.name}</td>
+                  <td>{(new Date(fireRisk.updatedAt)).toLocaleString(i18n.language)}</td>
+                  <td>{t(fireRisk.riskNowKey)} <FaFire color={riskColors[fireRisk.riskNow]} /></td>
+                  <td>{t(fireRisk.riskTomorrowKey)} <FaFire color={riskColors[fireRisk.riskTomorrow]} /></td>
+                  <td>{t(fireRisk.riskAfterTomorrowKey)} <FaFire color={riskColors[fireRisk.riskAfterTomorrow]} /></td>
+                </tr>
+              )
+            )
+          }
         </tbody>
       </Table>
       {show ? <SopfeuForm show={show} handleClose={handleClose} riskColors={riskColors} fireRisks={fireRisks} selectedFireRiskIndex={selectedFireRiskIndex} /> : null}

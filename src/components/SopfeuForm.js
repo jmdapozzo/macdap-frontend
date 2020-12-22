@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Modal, Button, Container, Row, Col } from 'react-bootstrap';
 import ReactSpeedometer from 'react-d3-speedometer';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 function SopfeuForm({ show, handleClose, riskColors, fireRisks, selectedFireRiskIndex }) {
 
@@ -99,10 +100,13 @@ function SopfeuForm({ show, handleClose, riskColors, fireRisks, selectedFireRisk
         <Container>
           <Row>
             <Col>
-              <Button id="left-button" className="float-left" variant="primary" onClick={handlePrevious}>{t('common:buttonLabel.previous')}</Button>
+              <Button id="left-button" className="float-left" variant="primary" size="lg" onClick={handlePrevious}><IoChevronBack/></Button>
             </Col>
             <Col>
-              <Button id="right-button" className="float-right" variant="primary" onClick={handleNext}>{t('common:buttonLabel.next')}</Button>
+            <h3 className="float-center">{fireRisks[currentFireRiskIndex].name}</h3>
+            </Col>
+            <Col>
+              <Button id="right-button" className="float-right" variant="primary" size="lg" onClick={handleNext}><IoChevronForward/></Button>
             </Col>
           </Row>
         </Container>

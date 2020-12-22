@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import SopfeuTable from './SopfeuTable'
 
 function SopfeuPage(props) {
@@ -9,19 +9,20 @@ function SopfeuPage(props) {
 
   const [riskColors, setRiskColors] = useState([]);
   const [fireRisks, setFireRisks] = useState([]);
+  const [result, setResult] = useState({ hasError: false});
 
   const getColors = () => {
     fetch('http://localhost:3001/sopfeu/risk-colors')
       .then(response => response.json())
       .then(riskColors => setRiskColors(riskColors))
-      .catch(err => console.log(err))
+      .catch(err => setResult({ hasError: true, message: err.message}))
   };
 
   const getFireRisks = () => {
     fetch('http://localhost:3001/sopfeu/fire-risks')
       .then(response => response.json())
       .then(fireRisks => setFireRisks(fireRisks))
-      .catch(err => console.log(err))
+      .catch(err => setResult({ hasError: true, message: err.message}))
   };
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function SopfeuPage(props) {
     <Container fluid>
       <Row>
         <Col>
-          <SopfeuTable riskColors={riskColors} fireRisks={fireRisks} />
+          {!result.hasError ? <SopfeuTable riskColors={riskColors} fireRisks={fireRisks} /> : <Alert variant='danger'>{result.message}</Alert>}
         </Col>
       </Row>
     </Container>

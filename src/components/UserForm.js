@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Form } from 'react-bootstrap'
+import { Button, Modal, Form, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
 
 function UserForm(props) {
 
@@ -33,19 +34,26 @@ function UserForm(props) {
   let title = ''
 
   if (label === t('common:buttonLabel.edit')) {
-    button = <Button
-      variant="success"
-      //variant="warning"
-      onClick={handleShow}
-      style={{ float: "left", marginRight: "10px" }}>{label}
-    </Button>
+    button =
+      <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{label}</Tooltip>}>
+        <Button
+          variant="success"
+          //variant="warning"
+          onClick={handleShow}
+          style={{ float: "left", marginRight: "10px" }}><FaUserEdit />
+        </Button>
+      </OverlayTrigger>
+
     title = t('dialogTitle.edit')
   } else {
-    button = <Button
-      variant="success"
-      onClick={handleShow}
-      style={{ float: "left", marginRight: "10px" }}>{label}
-    </Button>
+    button =
+      <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{label}</Tooltip>}>
+        <Button
+          variant="success"
+          onClick={handleShow}
+          style={{ float: "left", marginRight: "10px" }}><FaUserPlus />
+        </Button>
+      </OverlayTrigger>
     title = t('dialogTitle.add')
   }
 

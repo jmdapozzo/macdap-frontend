@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import UserForm from './UserForm'
+import { FaTrashAlt } from 'react-icons/fa';
 
 function UserTable(props) {
 
@@ -27,29 +28,8 @@ function UserTable(props) {
     }
   }
 
-  const items = props.items.map(item => {
-    return (
-      <tr key={item.id}>
-        <th scope="row">{item.id}</th>
-        <td>{item.first}</td>
-        <td>{item.last}</td>
-        <td>{item.email}</td>
-        <td>{item.phone}</td>
-        <td>{item.location}</td>
-        <td>{item.hobby}</td>
-        <td>
-          <div style={{ width: "160px" }}>
-            <UserForm buttonLabel={t('common:buttonLabel.edit')} item={item} updateState={props.updateState} />
-            {' '}
-            <Button variant="danger" onClick={() => deleteItem(item.id)}>{t('common:buttonLabel.delete')}</Button>
-          </div>
-        </td>
-      </tr>
-    )
-  })
-
   return (
-    <Table responsive hover>
+    <Table responsive hover striped bordered size="sm">
       <thead>
         <tr>
           <th>{t('fieldLabel.id')}</th>
@@ -63,7 +43,29 @@ function UserTable(props) {
         </tr>
       </thead>
       <tbody>
-        {items}
+        {
+          props.items.map(
+            item => (
+              <tr key={item.id}>
+                <th scope="row">{item.id}</th>
+                <td>{item.first}</td>
+                <td>{item.last}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.location}</td>
+                <td>{item.hobby}</td>
+                <td>
+                  <div style={{ width: "100px" }}>
+                    <UserForm buttonLabel={t('common:buttonLabel.edit')} item={item} updateState={props.updateState} />
+                    <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{t('common:buttonLabel.delete')}</Tooltip>}>
+                      <Button variant="danger" onClick={() => deleteItem(item.id)}><FaTrashAlt /></Button>
+                    </OverlayTrigger>
+                  </div>
+                </td>
+              </tr>
+            )
+          )
+        }
       </tbody>
     </Table>
   )

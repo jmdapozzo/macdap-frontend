@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import UserForm from './UserForm'
 import UserTable from './UserTable'
 import { CSVLink } from "react-csv"
+import { FaFileDownload } from 'react-icons/fa';
 
 function UserPage(props) {
 
@@ -45,14 +46,15 @@ function UserPage(props) {
       </Row>
       <Row>
         <Col>
-          <CSVLink
-            filename={"db.csv"}
-            variant="secondary"
-            style={{ float: "left", marginRight: "10px" }}
-            className="btn btn-primary"
-            data={items}>
-            {t('common:buttonLabel.export')}
-          </CSVLink>
+          <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{t('common:buttonLabel.export')}</Tooltip>}>
+            <CSVLink
+              filename={"db.csv"}
+              variant="secondary"
+              style={{ float: "left", marginRight: "10px" }}
+              className="btn btn-primary"
+              data={items}><FaFileDownload />
+            </CSVLink>
+          </OverlayTrigger>
           <UserForm buttonLabel={t('common:buttonLabel.add')} addItemToState={addItemToState} />
         </Col>
       </Row>
