@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Table, Row, Col } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import SopfeuForm from './SopfeuForm';
 import { ImFire } from 'react-icons/im';
 
@@ -35,36 +35,36 @@ function SopfeuTable({ riskColors, fireRisks }) {
               (fireRisk, index) => (
                 <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
                   <td>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       {fireRisk.name}
                     </div>
                   </td>
                   <td>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       {(new Date(fireRisk.updatedAt)).toLocaleString(i18n.language)}
                     </div>
                   </td>
                   <td>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       <ImFire color={riskColors[fireRisk.riskNow]} />
                     </div>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       {t(fireRisk.riskNowKey)}
                     </div>
                   </td>
                   <td>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       <ImFire color={riskColors[fireRisk.riskTomorrow]} />
                     </div>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       {t(fireRisk.riskTomorrowKey)}
                     </div>
                   </td>
                   <td>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       <ImFire color={riskColors[fireRisk.riskAfterTomorrow]} />
                     </div>
-                    <div style={{ float: "left", marginLeft: "10px" }}>
+                    <div className="table-cell-with-icon">
                       {t(fireRisk.riskAfterTomorrowKey)}
                     </div>
                   </td>

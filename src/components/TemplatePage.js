@@ -7,7 +7,7 @@ function TemplatePage(props) {
 
   return (
       <div>
-        <h1>{t('template:title')}</h1>
+        <h1>{t('title')}</h1>
       </div>
     );
 }

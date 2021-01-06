@@ -36,12 +36,7 @@ function UserForm(props) {
   if (label === t('common:buttonLabel.edit')) {
     button =
       <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{label}</Tooltip>}>
-        <Button
-          variant="success"
-          //variant="warning"
-          onClick={handleShow}
-          style={{ float: "left", marginRight: "10px" }}><FaUserEdit />
-        </Button>
+        <FaUserEdit style={{ marginRight: "10px" , marginLeft: "10px" }} onClick={handleShow}/>
       </OverlayTrigger>
 
     title = t('dialogTitle.edit')
@@ -123,7 +118,7 @@ function UserForm(props) {
   }, [false]);
 
   return (
-    <div>
+    <React.Fragment>
       {button}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -162,7 +157,7 @@ function UserForm(props) {
           <Button variant="primary" type="submit" form="userForm" onClick={handleClose}>{t('common:buttonLabel.saveChanges')}</Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </React.Fragment>
   )
 }
 

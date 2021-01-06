@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Table, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import UserForm from './UserForm'
 import { FaTrashAlt } from 'react-icons/fa';
+import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
 
 function UserTable(props) {
 
@@ -55,10 +56,10 @@ function UserTable(props) {
                 <td>{item.location}</td>
                 <td>{item.hobby}</td>
                 <td>
-                  <div style={{ width: "100px" }}>
+                  <div>
                     <UserForm buttonLabel={t('common:buttonLabel.edit')} item={item} updateState={props.updateState} />
                     <OverlayTrigger placement="top" delay="500" overlay={<Tooltip>{t('common:buttonLabel.delete')}</Tooltip>}>
-                      <Button variant="danger" onClick={() => deleteItem(item.id)}><FaTrashAlt /></Button>
+                      <FaTrashAlt style={{ marginRight: "10px" , marginLeft: "10px" }} onClick={() => deleteItem(item.id)} />
                     </OverlayTrigger>
                   </div>
                 </td>
