@@ -1,39 +1,50 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import HomePage from "./components/HomePage";
-import SopfeuPage from './components/SopfeuPage';
-import UserPage from './components/UserPage';
-import TemplatePage from './components/TemplatePage';
-import NoMatchPage from './components/NoMatchPage';
-import Layout from './components/Layout';
-import NavigationBar from './components/NavigationBar'
-import './App.css';
+import { useAuth0 } from "@auth0/auth0-react";
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
+import Header from "./components/header";
+import Footer from "./components/footer";
+import HomePage from "./components/home-page";
+import SopfeuPage from './components/sopfeu-page';
+import UserPage from './components/user-page';
+import ProfilePage from './components/profile-page';
+import ExternalAPIPage from './components/external-api';
+import TemplatePage from './components/template-page';
+import NoMatchPage from './components/no-match-page';
+import Layout from './components/layout';
+import NavigationBar from './components/navigation-bar'
+import Loading from './components/loading'
+import ProtectedRoute from "./auth/protected-route";
 
 //checkout https://www.npmjs.com/package/react-router-bootstrap
 
 function App(props) {
 
   const { t, i18n } = useTranslation(['common', 'sopfeu', 'users', 'template']);
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <React.Fragment>
       <Header />
       <NavigationBar />
       <Layout>
-        <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/home" component={HomePage} />
             <Route path="/sopfeu" component={SopfeuPage} />
             <Route path="/users" component={UserPage} />
+            <ProtectedRoute path="/profile" component={ProfilePage} />
+            <Route path="/external-api" component={ExternalAPIPage} />
             <Route path="/template" component={TemplatePage} />
             <Route component={NoMatchPage} />
           </Switch>
-        </Router>
       </Layout>
+      <Footer />
     </React.Fragment>
   );
 };

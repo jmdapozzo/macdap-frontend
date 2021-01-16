@@ -10,7 +10,9 @@
 
 	"navBar": {
 		"home": "Home",
-		"login": "Login"
+		"login": "Log In",
+		"logout": "Log Out",
+		"signup": "Sign Up"
 	},
 
 	"buttonLabel": {

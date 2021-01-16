@@ -10,7 +10,9 @@
 
 	"navBar": {
 		"home": "Accueil",
-		"login": "Connexion"
+		"login": "Connexion",
+		"logout": "Déconnexion",
+		"signup": "S'inscrire"
 	},
 
 	"buttonLabel": {

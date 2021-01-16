@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { Spinner } from 'react-bootstrap';
-import App from './App';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
+import Loading from './components/loading'
 import reportWebVitals from './reportWebVitals';
+import App from './app';
 import './i18n';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,8 +12,12 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<Spinner animation="border" />}>
-      <App />
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Auth0ProviderWithHistory>
+          <App />
+        </Auth0ProviderWithHistory>
+      </BrowserRouter>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root')

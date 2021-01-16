@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Table } from 'react-bootstrap';
-import SopfeuForm from './SopfeuForm';
+import SopfeuForm from './sopfeu-form';
 import { ImFire } from 'react-icons/im';
 
 function SopfeuTable({ riskColors, fireRisks }) {

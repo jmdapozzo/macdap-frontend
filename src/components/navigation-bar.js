@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import AuthenticationButton from "./authentication-button";
 
 const NavigationBar = () => {
 
-    const { t, i18n } = useTranslation(['common', 'home', 'sopfeu', 'users', 'template']);
+    const { t, i18n } = useTranslation(['common', 'home', 'sopfeu', 'users', 'profile', 'template']);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,6 +25,12 @@ const NavigationBar = () => {
                         <Nav.Link href="/users">{t('users:title')}</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
+                        <Nav.Link href="/profile">{t('profile:title')}</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link href="/external-api">External API</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
                         <Nav.Link href="/template">{t('template:title')}</Nav.Link>
                     </Nav.Item>
                 </Nav>
@@ -38,7 +45,7 @@ const NavigationBar = () => {
                         </NavDropdown>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/login">{t('navBar.login')}</Nav.Link>
+                        <AuthenticationButton />
                     </Nav.Item>
                 </Nav>
             </Navbar.Collapse>

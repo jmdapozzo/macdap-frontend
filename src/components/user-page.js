@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import UserForm from './UserForm'
-import UserTable from './UserTable'
+import UserForm from './user-form'
+import UserTable from './user-table'
 import { CSVLink } from "react-csv"
 import { FaFileDownload } from 'react-icons/fa';
 
@@ -12,7 +12,7 @@ function UserPage(props) {
   const [items, setItems] = useState([])
 
   const getItems = () => {
-    fetch('http://localhost:3001/users')
+    fetch(process.env.REACT_APP_SERVER_URL + '/users')
       .then(response => response.json())
       .then(items => setItems(items))
       .catch(err => console.log(err))

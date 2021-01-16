@@ -1,10 +1,120 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+ */
+
+ .spinner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.App-link {
+  color: rgb(97, 218, 251);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@font-face {
+  font-family: logoFont;
+  src: url(./assets/fonts/OpenSans-CondBold.ttf);
+}
+
+.navbar-brand {
+  font-family: logoFont;
+}
+
+.company {
+  font-family: logoFont;
+}
+
+.jumbotron {
+  text-align: left;
+  /* background: url(./assets/images/header-background.jpg) no-repeat fixed bottom; */
+  background-size: cover;
+  color: rgb(239, 239, 239);
+  height: 200px;
+  position: relative;
+  z-index: -2;
+}
+
+.overlay {
+  background-color: rgb(0, 0, 0);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+/* .modal-dialog {
+  max-width: none;
+}
+ */
+
+.modal-content {
+  color: #fff;
+  background-image: linear-gradient(255deg, #f9b25e, #f17b30);
+}
+
+/* .modal-header {
+  color: #fff;
+    background-image: linear-gradient(255deg, #f9b25e, #f17b30);
+}
+
+.modal-body {
+  color: #fff;
+    background-image: linear-gradient(255deg, #f9b25e, #f17b30);
+}
+
+.modal-footer {
+  color: #fff;
+    background-image: linear-gradient(255deg, #f9b25e, #f17b30);
+}
+*/
+
+.table-cell-with-icon {
+  float: left;
+  margin-left: 10px;
 }
 
 table th, table td { white-space: nowrap; }

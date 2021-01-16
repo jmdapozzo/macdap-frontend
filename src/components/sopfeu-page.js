@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
-import SopfeuTable from './SopfeuTable'
+import SopfeuTable from './sopfeu-table'
 
 function SopfeuPage(props) {
 
@@ -12,14 +12,14 @@ function SopfeuPage(props) {
   const [result, setResult] = useState({ hasError: false});
 
   const getColors = () => {
-    fetch('http://localhost:3001/sopfeu/risk-colors')
+    fetch(process.env.REACT_APP_SERVER_URL + '/sopfeu/risk-colors')
       .then(response => response.json())
       .then(riskColors => setRiskColors(riskColors))
       .catch(err => setResult({ hasError: true, message: err.message}))
   };
 
   const getFireRisks = () => {
-    fetch('http://localhost:3001/sopfeu/fire-risks')
+    fetch(process.env.REACT_APP_SERVER_URL + '/sopfeu/fire-risks')
       .then(response => response.json())
       .then(fireRisks => setFireRisks(fireRisks))
       .catch(err => setResult({ hasError: true, message: err.message}))

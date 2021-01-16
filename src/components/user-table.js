@@ -1,9 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Table, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import UserForm from './UserForm'
+import UserForm from './user-form'
 import { FaTrashAlt } from 'react-icons/fa';
-import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
 
 function UserTable(props) {
 
@@ -12,7 +11,7 @@ function UserTable(props) {
   const deleteItem = id => {
     let confirmDelete = window.confirm(t('common:alertMsg.areYouSureDeleteItem'))
     if (confirmDelete) {
-      fetch('http://localhost:3001/users', {
+      fetch(process.env.REACT_APP_SERVER_URL + '/users', {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json'

@@ -54,7 +54,7 @@ function UserForm(props) {
 
   const submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3001/users', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/users', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ function UserForm(props) {
 
   const submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3001/users', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/users', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
