@@ -5,7 +5,7 @@ import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import Loading from './components/loading'
 import reportWebVitals from './reportWebVitals';
 import App from './app';
-import './i18n';
+import './i18next';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
