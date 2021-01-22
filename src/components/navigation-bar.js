@@ -7,7 +7,7 @@ import AuthenticationButton from "./authentication-button";
 
 const NavigationBar = () => {
 
-    const { t, i18n } = useTranslation(['common', 'home', 'sopfeu', 'users', 'profile', 'template']);
+    const { t, i18n } = useTranslation(['common', 'home', 'map', 'sopfeu', 'users', 'profile', 'template']);
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,6 +17,9 @@ const NavigationBar = () => {
                 <Nav className="mr-auto">
                     <Nav.Item>
                         <Nav.Link href="/">{t('home:title')}</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link href="/map">{t('map:title')}</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link href="/sopfeu">{t('sopfeu:title')}</Nav.Link>

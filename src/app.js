@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAuth0 } from "@auth0/auth0-react";
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
+import { Route, Switch } from 'react-router-dom';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import HomePage from "./components/home-page";
+import MapPage from "./components/map"
 import SopfeuPage from './components/sopfeu-page';
 import UserPage from './components/user-page';
 import ProfilePage from './components/profile-page';
@@ -36,6 +36,7 @@ function App(props) {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/home" component={HomePage} />
+            <Route path="/map" component={MapPage} />
             <Route path="/sopfeu" component={SopfeuPage} />
             <Route path="/users" component={UserPage} />
             <ProtectedRoute path="/profile" component={ProfilePage} />

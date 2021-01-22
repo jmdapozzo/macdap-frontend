@@ -118,3 +118,13 @@
 }
 
 table th, table td { white-space: nowrap; }
+
+.map-header {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #281414;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}

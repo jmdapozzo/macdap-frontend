@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
+import { BrowserRouter } from 'react-router-dom';
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import Loading from './components/loading'
 import reportWebVitals from './reportWebVitals';
 import App from './app';
