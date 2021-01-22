@@ -119,6 +119,10 @@
 
 table th, table td { white-space: nowrap; }
 
+.map_container {
+  position: relative;
+}
+
 .map-header {
   position: absolute;
   top: 1rem;

@@ -47,8 +47,8 @@ function Map() {
 
 
     return (
-        <div>
-            <h1 className="map-header">Ski <span role="img" aria-label="Skier">⛷</span> </h1>
+        <div className="map_container">
+            <h1 className="map-header">Ski <span role="img" aria-label="Snowflake">❄</span> </h1>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={10}
@@ -62,10 +62,10 @@ function Map() {
                         key={marker.time.toISOString()}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={{
-                            url: "/map-marker.svg", //move this back to assets or move all assets to public
-                            scaledSize: new window.google.maps.Size(30, 30),
+                            url: "map-marker-ski.png", //move this back to assets or move all assets to public
+                            //scaledSize: new window.google.maps.Size(32, 32),
                             origin: new window.google.maps.Point(0, 0),
-                            anchor: new window.google.maps.Point(15, 15)
+                            anchor: new window.google.maps.Point(16, 16)
                         }}
                         onClick={() => {
                             setSelected(marker);
