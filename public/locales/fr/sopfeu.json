@@ -1,27 +1,27 @@
 {
-	"title": "SOPFEU",
-	"fireRiskTitle": "Risque de feu",
-	"regionTableHeader": "Région",
-	"riskTableHeader": "Risque",
+  "title": "SOPFEU",
+  "fireRiskTitle": "Risque de feu",
+  "regionTableHeader": "Région",
+  "riskTableHeader": "Risque",
 
-	"fireRisk": {
-		"notAvailable": "N/D",
-		"low": "Bas",
-		"moderate": "Modéré",
-		"high": "Élevé",
-		"veryHigh": "Très élevé",
-		"extreme": "Extrême"
-	},
+  "fireRisk": {
+    "notAvailable": "N/D",
+    "low": "Bas",
+    "moderate": "Modéré",
+    "high": "Élevé",
+    "veryHigh": "Très élevé",
+    "extreme": "Extrême"
+  },
 
-	"fieldLabel": {
-        "name": "Région",
-        "updatedAt": "Dernière mise à jour",
-        "riskNow": "Risque aujourd'hui",
-        "riskTomorrow": "Risque demain",
-        "riskAfterTomorrow": "Risque après-demain"
-    },
+  "fieldLabel": {
+    "name": "Région",
+    "updatedAt": "Dernière mise à jour",
+    "riskNow": "Risque aujourd'hui",
+    "riskTomorrow": "Risque demain",
+    "riskAfterTomorrow": "Risque après-demain"
+  },
 
-	"error": {
-		"noCanvasSupport": "Désolé, votre fureteur ne supporte pas l'élément <canvas>."
-	}
+  "error": {
+    "noCanvasSupport": "Désolé, votre fureteur ne supporte pas l'élément <canvas>."
+  }
 }

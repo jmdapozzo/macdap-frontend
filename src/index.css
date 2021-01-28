@@ -25,7 +25,7 @@
 }
  */
 
- .spinner {
+.spinner {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -37,7 +37,6 @@
   left: 0;
   right: 0;
 }
-
 
 .App-link {
   color: rgb(97, 218, 251);
@@ -117,7 +116,10 @@
   margin-left: 10px;
 }
 
-table th, table td { white-space: nowrap; }
+table th,
+table td {
+  white-space: nowrap;
+}
 
 .map_container {
   position: relative;

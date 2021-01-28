@@ -1,10 +1,8 @@
 import React from "react";
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 function Footer() {
-
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(["common"]);
 
   //Check this logo pattern taken from auth0-react-sdk-video
   return (
@@ -14,10 +12,10 @@ function Footer() {
         Sample project provided by{" "}
         <a target="_blank" rel="noopener noreferrer" href="https://macdap.com">
           MacDap
-      </a>
+        </a>
       </p>
       <p className="m-0 text-center">
-        Copyright &copy; {t('company')} 2020 - {new Date().getFullYear()}
+        Copyright &copy; {t("company")} 2020 - {new Date().getFullYear()}
       </p>
     </footer>
   );

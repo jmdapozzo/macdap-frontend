@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, ButtonGroup, Button } from 'react-bootstrap';
+import { Container, ButtonGroup, Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ExternalApi = () => {
@@ -24,14 +24,11 @@ const ExternalApi = () => {
     try {
       const token = await getAccessTokenSilently();
 
-      const response = await fetch(
-        `${serverUrl}/api/private`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${serverUrl}/api/private`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const responseData = await response.json();
 
@@ -50,7 +47,7 @@ const ExternalApi = () => {
         the access token using the Auth0 Audience value.
       </p>
       <ButtonGroup>
-      <Button onClick={callApi} color="primary" className="mt-5">
+        <Button onClick={callApi} color="primary" className="mt-5">
           Get public message
         </Button>
         <Button onClick={callSecureApi} color="primary" className="mt-5">

@@ -1,14 +1,14 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
-import Loading from './components/loading'
-import reportWebVitals from './reportWebVitals';
-import App from './app';
-import './i18next';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
+import Loading from "./components/loading";
+import reportWebVitals from "./reportWebVitals";
+import App from "./app";
+import "./i18next";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,7 +20,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Suspense>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,24 +1,24 @@
 {
-    "title": "Utilisateurs",
+  "title": "Utilisateurs",
 
-    "dialogTitle": {
-        "add": "Ajouter un nouvel utilisateur",
-        "edit": "Éditer un utilisateur"
-    },
+  "dialogTitle": {
+    "add": "Ajouter un nouvel utilisateur",
+    "edit": "Éditer un utilisateur"
+  },
 
-    "fieldLabel": {
-        "id": "ID",
-        "first": "Prénom",
-        "last": "Nom",
-        "email": "Courriel",
-        "phone": "Téléphone",
-        "location": "Localité",
-        "hobby": "Hobby",
-        "actions": "Actions"
-    },
-    
-    "fieldPlaceholder": {
-        "phone": "pe. 555-555-1212",
-        "location": "Ville, Province"
-    }
+  "fieldLabel": {
+    "id": "ID",
+    "first": "Prénom",
+    "last": "Nom",
+    "email": "Courriel",
+    "phone": "Téléphone",
+    "location": "Localité",
+    "hobby": "Hobby",
+    "actions": "Actions"
+  },
+
+  "fieldPlaceholder": {
+    "phone": "pe. 555-555-1212",
+    "location": "Ville, Province"
+  }
 }

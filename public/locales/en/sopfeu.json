@@ -1,27 +1,27 @@
 {
-	"title": "SOPFEU",
-	"fireRiskTitle": "Fire Risk",
-	"regionTableHeader": "Region",
-	"riskTableHeader": "Risk",
+  "title": "SOPFEU",
+  "fireRiskTitle": "Fire Risk",
+  "regionTableHeader": "Region",
+  "riskTableHeader": "Risk",
 
-	"fireRisk": {
-		"notAvailable": "N/A",
-		"low": "Low",
-		"moderate": "Moderate",
-		"high": "High",
-		"veryHigh": "Very High",
-		"extreme": "Extreme"
-	},
+  "fireRisk": {
+    "notAvailable": "N/A",
+    "low": "Low",
+    "moderate": "Moderate",
+    "high": "High",
+    "veryHigh": "Very High",
+    "extreme": "Extreme"
+  },
 
-	"fieldLabel": {
-        "name": "Region",
-        "updatedAt": "Last Update",
-        "riskNow": "Risk now",
-        "riskTomorrow": "Risk Tomorrow",
-        "riskAfterTomorrow": "Risk After Tomorrow"
-    },
+  "fieldLabel": {
+    "name": "Region",
+    "updatedAt": "Last Update",
+    "riskNow": "Risk now",
+    "riskTomorrow": "Risk Tomorrow",
+    "riskAfterTomorrow": "Risk After Tomorrow"
+  },
 
-	"error": {
-		"noCanvasSupport": "Sorry, your browser doesn't support the <canvas> element."
-	}
+  "error": {
+    "noCanvasSupport": "Sorry, your browser doesn't support the <canvas> element."
+  }
 }

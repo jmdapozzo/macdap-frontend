@@ -1,11 +1,10 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next';
-import { Jumbotron, Image, Container } from 'react-bootstrap';
-import logo from '../assets/images/logo/noBackgroundNoText.svg';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Jumbotron, Image, Container } from "react-bootstrap";
+import logo from "../assets/images/logo/noBackgroundNoText.svg";
 
 function Header() {
-
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(["common"]);
 
   return (
     <Jumbotron className="mb-0">
@@ -16,13 +15,13 @@ function Header() {
             <Image src={logo} width={100} height={100} />
           </div>
           <div>
-            <h1 className="company">{t('company')}</h1>
-            <h3>{t('mission')}</h3>
+            <h1 className="company">{t("company")}</h1>
+            <h3>{t("mission")}</h3>
           </div>
         </div>
       </Container>
     </Jumbotron>
-  )
+  );
 }
 
-export default Header
+export default Header;

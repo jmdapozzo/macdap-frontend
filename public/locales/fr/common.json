@@ -1,33 +1,33 @@
 {
-	"company": "MacDap Inc.",
-	"brand": "MacDap",
-	"language": "Français",
+  "company": "MacDap Inc.",
+  "brand": "MacDap",
+  "language": "Français",
 
-	"error": "Erreur",
-	"noMatch": "Désolé, cette page n'existe pas!",
+  "error": "Erreur",
+  "noMatch": "Désolé, cette page n'existe pas!",
 
-	"mission": "Soyez en contrôle de votre environnement!",
+  "mission": "Soyez en contrôle de votre environnement!",
 
-	"navBar": {
-		"home": "Accueil",
-		"login": "Connexion",
-		"logout": "Déconnexion",
-		"signup": "S'inscrire"
-	},
+  "navBar": {
+    "home": "Accueil",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "signup": "S'inscrire"
+  },
 
-	"buttonLabel": {
-		"open": "Ouvrir",
-		"close": "Fermer",
-		"add": "Ajouter",
-		"edit": "Éditer",
-		"delete": "Supprimer",
-		"saveChanges": "Sauvegarder",
-		"export": "Exporter",
-		"next": "Suivant",
-		"previous": "Précédent"
-	},
+  "buttonLabel": {
+    "open": "Ouvrir",
+    "close": "Fermer",
+    "add": "Ajouter",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "saveChanges": "Sauvegarder",
+    "export": "Exporter",
+    "next": "Suivant",
+    "previous": "Précédent"
+  },
 
-	"alertMsg": {
-		"areYouSureDeleteItem": "Ëtes-vous certain de vouloir supprimer cet item?"
-	}
+  "alertMsg": {
+    "areYouSureDeleteItem": "Ëtes-vous certain de vouloir supprimer cet item?"
+  }
 }
