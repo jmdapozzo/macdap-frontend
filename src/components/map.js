@@ -1,15 +1,18 @@
 import React from 'react'
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, InfoWindow } from '@react-google-maps/api';
+import DefaultMarker from './markers/default-marker'
+import SkiMarker from './markers/ski-marker'
+import HomeMarker from './markers/home-marker'
+import DefaultInfoWindow from './info-windows/default-info-window'
+import SkiInfoWindow from './info-windows/ski-info-window'
+import HomeInfoWindow from './info-windows/home-info-window'
 import mapStyles from "../mapStyles";
 
 const libraries = ["places"];
+
 const mapContainerStyle = {
     height: '50rem'
 }
-const center = {
-    lat: 45.462504,
-    lng: -73.554223
-};
 const options = {
     //styles: mapStyles,
     disableDefaultUI: true,
@@ -24,17 +27,48 @@ function Map() {
         libraries
     });
 
+    const [currentPosition, setCurrentPosition] = React.useState({});
     const [markers, setMarkers] = React.useState([]);
     const [selected, setSelected] = React.useState(null);
+
+    const currentPositionSuccess = position => {
+        const currentPosition = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+        setMarkers((current) => [
+            ...current,
+            {
+                type: "home",
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                time: new Date()
+            }]);
+
+        setCurrentPosition(currentPosition);
+    };
+
+    const currentPositionError = error => {
+        const currentPosition = {
+            lat: 45.462504,
+            lng: -73.554223
+        }
+        setCurrentPosition(currentPosition);
+    };
+
+    React.useEffect(() => {
+        navigator.geolocation.getCurrentPosition(currentPositionSuccess, currentPositionError);
+    })
 
     const onMapClick = React.useCallback((event) => {
         setMarkers((current) => [
             ...current,
             {
+                type: "ski",
                 lat: event.latLng.lat(),
                 lng: event.latLng.lng(),
                 time: new Date()
-            }])
+            }]);
     }, []);
 
     const mapRef = React.useRef();
@@ -52,41 +86,84 @@ function Map() {
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={10}
-                center={center}
+                center={currentPosition}
                 options={options}
                 onClick={onMapClick}
                 onLoad={onMapLoad}
             >
-                {markers.map((marker) => (
-                    <Marker
-                        key={marker.time.toISOString()}
-                        position={{ lat: marker.lat, lng: marker.lng }}
-                        icon={{
-                            url: "map-marker-ski.png", //move this back to assets or move all assets to public
-                            //scaledSize: new window.google.maps.Size(32, 32),
-                            origin: new window.google.maps.Point(0, 0),
-                            anchor: new window.google.maps.Point(16, 16)
-                        }}
-                        onClick={() => {
-                            setSelected(marker);
-                        }}
-                    />
-                ))}
+                {markers.map((marker) => {
+                    var markerComponent;
+                    switch (marker.type) {
+                        case "home":
+                            markerComponent =
+                                <HomeMarker
+                                    key={marker.time.toISOString()}
+                                    position={{ lat: marker.lat, lng: marker.lng }}
+                                    onClick={() => { setSelected(marker); }}
+                                />
+                            break;
 
-                {selected ? (<InfoWindow
-                    position={{ lat: selected.lat, lng: selected.lng }}
-                    onCloseClick={() => {
-                        setSelected(null);
-                    }}
-                >
-                    <div>
-                        <h2>Spotted</h2>
-                        <p>{selected.time.toLocaleString()}</p>
-                    </div>
-                </InfoWindow>) : null}
+                        case "ski":
+                            markerComponent =
+                                <SkiMarker
+                                    key={marker.time.toISOString()}
+                                    position={{ lat: marker.lat, lng: marker.lng }}
+                                    onClick={() => { setSelected(marker); }}
+                                />
+                            break;
+
+                        default:
+                            markerComponent =
+                                <DefaultMarker
+                                    key={marker.time.toISOString()}
+                                    position={{ lat: marker.lat, lng: marker.lng }}
+                                    onClick={() => { setSelected(marker); }}
+                                />
+                    }
+                    return markerComponent;
+                }
+                )}
+
+                {selected ?
+                    (() => {
+                        var infoWindow;
+                        switch (selected.type) {
+                            case "home":
+                                infoWindow =
+                                    <HomeInfoWindow
+                                        time={selected.time}
+                                        position={{ lat: selected.lat, lng: selected.lng }}
+                                        onCloseClick={() => { setSelected(null); }}
+                                    />
+                                break;
+
+                            case "ski":
+                                infoWindow =
+                                    <SkiInfoWindow
+                                        time={selected.time}
+                                        position={{ lat: selected.lat, lng: selected.lng }}
+                                        onCloseClick={() => { setSelected(null); }}
+                                    />
+                                break;
+
+                            default:
+                                infoWindow =
+                                    <DefaultInfoWindow
+                                        time={selected.time}
+                                        position={{ lat: selected.lat, lng: selected.lng }}
+                                        onCloseClick={() => { setSelected(null); }}
+                                    />
+                        }
+                        return infoWindow
+                    })()
+                    : null
+                }
             </GoogleMap>
         </div>
     )
 }
+
+
+
 
 export default Map
