@@ -1,10 +1,7 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
-  const { t } = useTranslation(["profile", "common"]);
-
   const { user } = useAuth0();
   const { name, picture, email } = user;
 

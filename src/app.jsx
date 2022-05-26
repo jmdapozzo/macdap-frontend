@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/header";
@@ -20,7 +19,6 @@ import ProtectedRoute from "./auth/protected-route";
 //checkout https://www.npmjs.com/package/react-router-bootstrap
 
 function App(props) {
-  const { t, i18n } = useTranslation(["common", "sopfeu", "users", "template"]);
   const { isLoading } = useAuth0();
 
   if (isLoading) {

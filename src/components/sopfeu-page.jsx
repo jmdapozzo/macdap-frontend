@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import SopfeuTable from "./sopfeu-table";
 
 function SopfeuPage(props) {
-  const { t } = useTranslation(["sopfeu", "common"]);
-
   const [riskColors, setRiskColors] = useState([]);
   const [fireRisks, setFireRisks] = useState([]);
   const [result, setResult] = useState({ hasError: false });

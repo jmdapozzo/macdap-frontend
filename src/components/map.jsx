@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap, useLoadScript, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import DefaultMarker from "./markers/default-marker";
 import SkiMarker from "./markers/ski-marker";
 import HomeMarker from "./markers/home-marker";
