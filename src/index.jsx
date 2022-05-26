@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import Loading from "./components/loading";
@@ -10,7 +10,9 @@ import "./i18next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
