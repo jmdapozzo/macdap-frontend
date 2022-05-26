@@ -1,6 +1,5 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import HomePage from "./components/home-page";
@@ -11,31 +10,24 @@ import TemplatePage from "./components/template-page";
 import NoMatchPage from "./components/no-match-page";
 import Layout from "./components/layout";
 import NavigationBar from "./components/navigation-bar";
-import Loading from "./components/loading";
 
 //checkout https://www.npmjs.com/package/react-router-bootstrap
 
 function App(props) {
-  const { isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     <React.Fragment>
       <Header />
       <NavigationBar />
       <Layout>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/home" component={HomePage} />
-          <Route path="/map" component={MapPage} />
-          <Route path="/sopfeu" component={SopfeuPage} />
-          <Route path="/users" component={UserPage} />
-          <Route path="/template" component={TemplatePage} />
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/home" element={<HomePage/>} />
+          <Route path="/map" element={<MapPage/>} />
+          <Route path="/sopfeu" element={<SopfeuPage/>} />
+          <Route path="/users" element={<UserPage/>} />
+          <Route path="/template" element={<TemplatePage/>} />
           <Route component={NoMatchPage} />
-        </Switch>
+        </Routes>
       </Layout>
       <Footer />
     </React.Fragment>
