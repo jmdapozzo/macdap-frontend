@@ -21,54 +21,62 @@ function SopfeuTable({ riskColors, fireRisks }) {
       <Table responsive hover striped bordered size="sm">
         <thead>
           <tr>
-            <th style={{ width: "40%" }}>{t("fieldLabel.name")}</th>
-            <th style={{ width: "30%" }}>{t("fieldLabel.updatedAt")}</th>
-            <th style={{ width: "10%" }}>{t("fieldLabel.riskNow")}</th>
-            <th style={{ width: "10%" }}>{t("fieldLabel.riskTomorrow")}</th>
+            <th style={{ width: "30%" }}> {t("fieldLabel.name")} </th>{" "}
+            <th style={{ width: "20%" }}> {t("fieldLabel.updatedAt")} </th>{" "}
+            <th style={{ width: "10%" }}> {t("fieldLabel.riskNow")} </th>{" "}
+            <th style={{ width: "10%" }}> {t("fieldLabel.riskTomorrow")} </th>{" "}
             <th style={{ width: "10%" }}>
-              {t("fieldLabel.riskAfterTomorrow")}
-            </th>
-          </tr>
-        </thead>
+              {" "}
+              {t("fieldLabel.riskAfterTomorrow")}{" "}
+            </th>{" "}
+          </tr>{" "}
+        </thead>{" "}
         <tbody>
+          {" "}
           {fireRisks.map((fireRisk, index) => (
             <tr key={fireRisk.id} onClick={() => handleOnRowClick(index)}>
               <td>
-                <div className="table-cell-with-icon">{fireRisk.name}</div>
-              </td>
+                <div className="table-cell-with-icon"> {fireRisk.name} </div>{" "}
+              </td>{" "}
               <td>
                 <div className="table-cell-with-icon">
-                  {new Date(fireRisk.updatedAt).toLocaleString(i18n.language)}
-                </div>
-              </td>
+                  {" "}
+                  {new Date(fireRisk.updatedAt).toLocaleString(
+                    i18n.language
+                  )}{" "}
+                </div>{" "}
+              </td>{" "}
               <td>
                 <div className="table-cell-with-icon">
-                  <ImFire color={riskColors[fireRisk.riskNow]} />
-                </div>
+                  <ImFire color={riskColors[fireRisk.riskNow]} />{" "}
+                </div>{" "}
                 <div className="table-cell-with-icon">
-                  {t(fireRisk.riskNowKey)}
-                </div>
-              </td>
+                  {" "}
+                  {t(fireRisk.riskNowKey)}{" "}
+                </div>{" "}
+              </td>{" "}
               <td>
                 <div className="table-cell-with-icon">
-                  <ImFire color={riskColors[fireRisk.riskTomorrow]} />
-                </div>
+                  <ImFire color={riskColors[fireRisk.riskTomorrow]} />{" "}
+                </div>{" "}
                 <div className="table-cell-with-icon">
-                  {t(fireRisk.riskTomorrowKey)}
-                </div>
-              </td>
+                  {" "}
+                  {t(fireRisk.riskTomorrowKey)}{" "}
+                </div>{" "}
+              </td>{" "}
               <td>
                 <div className="table-cell-with-icon">
-                  <ImFire color={riskColors[fireRisk.riskAfterTomorrow]} />
-                </div>
+                  <ImFire color={riskColors[fireRisk.riskAfterTomorrow]} />{" "}
+                </div>{" "}
                 <div className="table-cell-with-icon">
-                  {t(fireRisk.riskAfterTomorrowKey)}
-                </div>
-              </td>
+                  {" "}
+                  {t(fireRisk.riskAfterTomorrowKey)}{" "}
+                </div>{" "}
+              </td>{" "}
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          ))}{" "}
+        </tbody>{" "}
+      </Table>{" "}
       {show ? (
         <SopfeuForm
           show={show}
@@ -77,7 +85,7 @@ function SopfeuTable({ riskColors, fireRisks }) {
           fireRisks={fireRisks}
           selectedFireRiskIndex={selectedFireRiskIndex}
         />
-      ) : null}
+      ) : null}{" "}
     </div>
   );
 }
