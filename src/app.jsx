@@ -5,7 +5,6 @@ import Footer from "./components/footer";
 import HomePage from "./components/home-page";
 import MapPage from "./components/map";
 import SopfeuPage from "./components/sopfeu-page";
-import UserPage from "./components/user-page";
 import TemplatePage from "./components/template-page";
 import NoMatchPage from "./components/no-match-page";
 import Layout from "./components/layout";
@@ -24,7 +23,6 @@ function App(props) {
           <Route path="/home" element={<HomePage/>} />
           <Route path="/map" element={<MapPage/>} />
           <Route path="/sopfeu" element={<SopfeuPage/>} />
-          <Route path="/users" element={<UserPage/>} />
           <Route path="/template" element={<TemplatePage/>} />
           <Route component={NoMatchPage} />
         </Routes>

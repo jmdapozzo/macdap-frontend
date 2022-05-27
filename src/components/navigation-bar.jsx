@@ -10,7 +10,6 @@ const NavigationBar = () => {
     "home",
     "map",
     "sopfeu",
-    "users",
     "template",
   ]);
 
@@ -28,9 +27,6 @@ const NavigationBar = () => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/sopfeu">{t("sopfeu:title")}</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href="/users">{t("users:title")}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/template">{t("template:title")}</Nav.Link>

@@ -1,33 +1,10 @@
 {
-  "company": "MacDap Inc.",
-  "brand": "MacDap",
-  "language": "English",
+    "company": "MacDap Inc.",
+    "brand": "MacDap",
+    "language": "English",
 
-  "error": "Error",
-  "noMatch": "Sorry, this page does not exists!",
+    "error": "Error",
+    "noMatch": "Sorry, this page does not exists!",
 
-  "mission": "Be in control of your environment!",
-
-  "navBar": {
-    "home": "Home",
-    "login": "Log In",
-    "logout": "Log Out",
-    "signup": "Sign Up"
-  },
-
-  "buttonLabel": {
-    "open": "Open",
-    "close": "Close",
-    "add": "Add",
-    "edit": "Edit",
-    "delete": "Delete",
-    "saveChanges": "Save Changes",
-    "export": "Export",
-    "next": "Next",
-    "previous": "Previous"
-  },
-
-  "alertMsg": {
-    "areYouSureDeleteItem": "Are you sure you want to delete this item?"
-  }
+    "mission": "Be in control of your environment!"
 }

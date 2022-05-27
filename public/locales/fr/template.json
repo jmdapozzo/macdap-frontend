@@ -1,3 +1,4 @@
 {
-  "title": "Gabarit"
+    "title": "Gabarit",
+    "install": "Installer {{name}}"
 }
