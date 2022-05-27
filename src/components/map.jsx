@@ -87,12 +87,6 @@ function Map() {
 
   return (
     <div className="map_container">
-      <h1 className="map-header">
-        Ski{" "}
-        <span role="img" aria-label="Snowflake">
-          ❄
-        </span>{" "}
-      </h1>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
