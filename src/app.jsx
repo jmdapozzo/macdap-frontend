@@ -10,8 +10,6 @@ import NoMatchPage from "./components/no-match-page";
 import Layout from "./components/layout";
 import NavigationBar from "./components/navigation-bar";
 
-//checkout https://www.npmjs.com/package/react-router-bootstrap
-
 function App(props) {
   return (
     <React.Fragment>
