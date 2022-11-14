@@ -1,12 +1,13 @@
 import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import Container from "react-bootstrap/Container"
 import DefaultMarker from "./markers/default-marker";
 import SkiMarker from "./markers/ski-marker";
 import HomeMarker from "./markers/home-marker";
 import DefaultInfoWindow from "./info-windows/default-info-window";
 import SkiInfoWindow from "./info-windows/ski-info-window";
 import HomeInfoWindow from "./info-windows/home-info-window";
-import mapStyles from "../mapStyles";
+//import mapStyles from "../mapStyles";
 
 const libraries = ["places"];
 
@@ -86,7 +87,7 @@ function Map() {
   if (!isLoaded) return "Loading Maps";
 
   return (
-    <div className="map_container">
+    <Container fluid className="px-0 map_container">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
@@ -197,7 +198,7 @@ function Map() {
             })()
           : null}
       </GoogleMap>
-    </div>
+    </Container>
   );
 }
 

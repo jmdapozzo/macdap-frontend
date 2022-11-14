@@ -17,11 +17,11 @@ function App(props) {
       <NavigationBar />
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/home" element={<HomePage/>} />
-          <Route path="/map" element={<MapPage/>} />
-          <Route path="/sopfeu" element={<SopfeuPage/>} />
-          <Route path="/template" element={<TemplatePage/>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/map" element={<MapPage />} />
+          <Route path="/sopfeu" element={<SopfeuPage />} />
+          <Route path="/template" element={<TemplatePage />} />
           <Route component={NoMatchPage} />
         </Routes>
       </Layout>
