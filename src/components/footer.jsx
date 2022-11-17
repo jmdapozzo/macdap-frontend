@@ -14,7 +14,7 @@ function Footer() {
           Copyright &copy; {t("company")} {new Date().getFullYear()}
         </Col>
         <Col className="d-flex justify-content-center">
-          <div>Version 0.0.0</div>
+          Version 0.0.0
         </Col>
         <Col className="d-flex justify-content-end">
           <a href="https://macdap.net" class="link-primary">

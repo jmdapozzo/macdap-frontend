@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Loading from "./components/loading";
 import reportWebVitals from "./reportWebVitals";
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-navigate";
 import App from "./app";
 import "./i18next";
 
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
-        <App />
+        <Auth0ProviderWithHistory>
+          <App />
+        </Auth0ProviderWithHistory>
       </BrowserRouter>
     </Suspense>
   </React.StrictMode>

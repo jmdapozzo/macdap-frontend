@@ -2,9 +2,13 @@
     "company": "MacDap Inc.",
     "brand": "MacDap",
     "language": "English",
-
     "error": "Error",
+    "loading": "Loading...",
     "noMatch": "Sorry, this page does not exists!",
-
-    "mission": "Be in control of your environment!"
+    "mission": "Be in control of your environment!",
+    "navBar": {
+        "login": "Login",
+        "logout": "Logout",
+        "signup": "Signup"
+    }
 }
