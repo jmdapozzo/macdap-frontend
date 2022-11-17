@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Loading from "./components/loading";
 import reportWebVitals from "./reportWebVitals";
-import Auth0ProviderWithHistory from "./auth/auth0-provider-with-navigate";
+import Auth0ProviderWithRedirectCallback from "./auth/auth0-provider-with-redirect-callback";
 import App from "./app";
 import "./i18next";
 
@@ -16,9 +16,9 @@ root.render(
   <React.StrictMode>
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
-        <Auth0ProviderWithHistory>
+        <Auth0ProviderWithRedirectCallback>
           <App />
-        </Auth0ProviderWithHistory>
+        </Auth0ProviderWithRedirectCallback>
       </BrowserRouter>
     </Suspense>
   </React.StrictMode>
