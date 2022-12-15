@@ -4,6 +4,10 @@
   "regionTableHeader": "Région",
   "riskTableHeader": "Risque",
 
+  "dialog": {
+    "title": "Risque de feu"
+  },
+
   "fireRisk": {
     "notAvailable": "N/D",
     "low": "Bas",

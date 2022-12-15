@@ -17,9 +17,7 @@ function Footer() {
           Version 0.0.0
         </Col>
         <Col className="d-flex justify-content-end">
-          <a href="https://macdap.net" class="link-primary">
-            {t("brand")}
-          </a>
+          {t("brand")}
         </Col>
       </Row>
     </Container>

@@ -1,8 +1,11 @@
 {
   "title": "SOPFEU",
-  "fireRiskTitle": "Fire Risk",
   "regionTableHeader": "Region",
   "riskTableHeader": "Risk",
+
+  "dialog": {
+    "title": "Fire Risk"
+  },
 
   "fireRisk": {
     "notAvailable": "N/A",

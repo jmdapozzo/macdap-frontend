@@ -10,8 +10,11 @@ import ProtectedRoute from "./auth/protected-route";
 import HomePage from "./components/home-page";
 import MapPage from "./components/map-page";
 import SopfeuPage from "./components/sopfeu-page";
+import DevicePage from "./components/device-page";
+import UserPage from "./components/user-page";
 import ProfilePage from "./components/profile-page";
 import TemplatePage from "./components/template-page";
+import TestPage from "./components/test-page";
 import NoMatchPage from "./components/no-match-page";
 
 function App(props) {
@@ -32,6 +35,14 @@ function App(props) {
           <Route path="/map" element={<MapPage />} />
           <Route path="/sopfeu" element={<SopfeuPage />} />
           <Route
+            path="/device"
+            element={<ProtectedRoute component={DevicePage} />}
+          />
+          <Route
+            path="/user"
+            element={<ProtectedRoute component={UserPage} />}
+          />
+          <Route
             path="/profile"
             element={<ProtectedRoute component={ProfilePage} />}
           />
@@ -39,6 +50,7 @@ function App(props) {
             path="/template"
             element={<ProtectedRoute component={TemplatePage} />}
           />
+          <Route path="/test" element={<TestPage />} />
           <Route component={NoMatchPage} />
         </Routes>
       </Layout>

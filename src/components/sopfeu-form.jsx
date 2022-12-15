@@ -50,7 +50,7 @@ function SopfeuForm({
       dialogClassName={"primaryModal"}
     >
       <Modal.Header closeButton>
-        <Modal.Title>{t("fireRiskTitle")}</Modal.Title>
+        <Modal.Title>{t("dialog.title")}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>

@@ -8,7 +8,6 @@
     "mission": "Soyez en contrôle de votre environnement!",
     "navBar": {
         "login": "Connexion",
-        "logout": "Déconnexion",
-        "signup": "Enregistrement"
+        "logout": "Déconnexion"
     }
 }

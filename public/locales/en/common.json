@@ -8,7 +8,6 @@
     "mission": "Be in control of your environment!",
     "navBar": {
         "login": "Login",
-        "logout": "Logout",
-        "signup": "Signup"
+        "logout": "Logout"
     }
 }

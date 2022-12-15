@@ -1,0 +1,20 @@
+{
+  "title": "Appareils",
+
+  "dialog": {
+    "title": "Appareil"
+  },
+
+  "fieldLabel": {
+    "device_id": "ID",
+    "owner": "Propriétaire",
+    "platform_type": "Plateforme",
+    "platform_id": "ID Plateforme",
+    "initial_connection": "Connexion initiale",
+    "last_connection": "Dernière connexion",
+    "title": "Application",
+    "version": "Version",
+    "build_number": "Build",
+    "connection_count": "Nb de connexions"
+  }
+}
