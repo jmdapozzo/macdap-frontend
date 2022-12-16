@@ -137,7 +137,7 @@ function UserForm(props) {
       const { id, first, last, email, phone, location, hobby } = props.item;
       setValues({ id, first, last, email, phone, location, hobby });
     }
-  }, []);
+  }, [props.item]); //props.item should not be there but it is to cancel out warning
 
   return (
     <React.Fragment>

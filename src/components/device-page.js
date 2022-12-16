@@ -9,30 +9,30 @@ function DevicePage(props) {
 
   const { getAccessTokenSilently } = useAuth0();
 
-  const getDevices = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-
-      const response = await fetch(
-        process.env.REACT_APP_SERVER_URL + "/device/v2",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const responseData = await response.json();
-
-      setDevices(responseData);
-    } catch (error) {
-      setResult({ hasError: true, message: error.message });
-    }
-  };
-
   useEffect(() => {
+    const getDevices = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+  
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_URL + "/device/v2",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        const responseData = await response.json();
+  
+        setDevices(responseData);
+      } catch (error) {
+        setResult({ hasError: true, message: error.message });
+      }
+    };
+
     getDevices();
-  }, []);
+  }, [getAccessTokenSilently]);
 
   return (
     <Container fluid>

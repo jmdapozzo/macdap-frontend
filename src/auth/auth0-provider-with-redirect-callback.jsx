@@ -15,9 +15,10 @@ const Auth0ProviderWithRedirectCallback = ({ children, ...props }) => {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
+      audience={audience}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
-      audience={audience}
+      useRefreshTokens={true}
       {...props}
     >
       {children}
