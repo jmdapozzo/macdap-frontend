@@ -137,7 +137,7 @@ function UserForm(props) {
       const { id, first, last, email, phone, location, hobby } = props.item;
       setValues({ id, first, last, email, phone, location, hobby });
     }
-  }, [false]);
+  }, []);
 
   return (
     <React.Fragment>
