@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import Container from "react-bootstrap/Container"
+import Container from "react-bootstrap/Container";
 import DefaultMarker from "./markers/default-marker";
 import SkiMarker from "./markers/ski-marker";
 import HomeMarker from "./markers/home-marker";
@@ -9,10 +9,10 @@ import SkiInfoWindow from "./info-windows/ski-info-window";
 import HomeInfoWindow from "./info-windows/home-info-window";
 //import mapStyles from "../mapStyles";
 
-const libraries = ["places"];
+const libraries = [];
 
 const mapContainerStyle = {
-  height: "50rem",
+  height: "45rem",
 };
 const options = {
   //styles: mapStyles,
@@ -23,31 +23,19 @@ const options = {
 
 function MapPage() {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
   const [currentPosition, setCurrentPosition] = React.useState({});
   const [markerPositions, setMarkerPositions] = React.useState([]);
-  const [selectedMarkerPosition, setSelectedMarkerPosition] = React.useState(
-    null
-  );
+  const [selectedMarkerPosition, setSelectedMarkerPosition] =
+    React.useState(null);
 
   const currentPositionSuccess = (position) => {
     const currentPosition = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     };
-    setMarkerPositions((current) => [
-      ...current,
-      {
-        type: "home",
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        time: new Date(),
-      },
-    ]);
-
     setCurrentPosition(currentPosition);
   };
 

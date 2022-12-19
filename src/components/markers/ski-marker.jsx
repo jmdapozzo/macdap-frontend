@@ -1,10 +1,9 @@
 import React from "react";
 import { Marker } from "@react-google-maps/api";
 
-function SkiMarker({ key, position, onClick }) {
+function SkiMarker({ position, onClick }) {
   return (
     <Marker
-      key={key}
       position={position}
       onClick={onClick}
       icon={{
