@@ -1,24 +1,17 @@
 {
   "title": "Users",
 
-  "dialogTitle": {
-    "add": "Add New User",
-    "edit": "Edit User"
+  "dialog": {
+    "title": "User"
   },
 
   "fieldLabel": {
-    "id": "ID",
-    "first": "First Name",
-    "last": "Last Name",
+    "user_id": "ID",
+    "given_name": "First Name",
+    "family_name": "Last Name",
     "email": "Email",
-    "phone": "Phone Number",
-    "location": "Location",
-    "hobby": "Hobby",
-    "actions": "Actions"
-  },
-
-  "fieldPlaceholder": {
-    "phone": "ex. 555-555-1212",
-    "location": "City, State"
+    "phone_number": "Phone Number",
+    "last_login": "Last login"
   }
 }
+

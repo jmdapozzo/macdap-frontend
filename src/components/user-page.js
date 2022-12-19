@@ -1,77 +1,48 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
-import UserForm from "./user-form";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import UserTable from "./user-table";
-import { CSVLink } from "react-csv";
-import { FaFileDownload } from "react-icons/fa";
 
 function UserPage(props) {
-  const { t } = useTranslation(["users", "common"]);
-  const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [result, setResult] = useState({ hasError: false });
 
-  const getItems = () => {
-    fetch(process.env.REACT_APP_SERVER_URL + "/users")
-      .then((response) => response.json())
-      .then((items) => setItems(items))
-      .catch((err) => console.log(err));
-  };
-
-  const addItemToState = (item) => {
-    setItems([...items, item]);
-  };
-
-  const updateState = (item) => {
-    const itemIndex = items.findIndex((data) => data.id === item.id);
-    const newArray = [
-      ...items.slice(0, itemIndex),
-      item,
-      ...items.slice(itemIndex + 1),
-    ];
-    setItems(newArray);
-  };
-
-  const deleteItemFromState = (id) => {
-    const updatedItems = items.filter((item) => item.id !== id);
-    setItems(updatedItems);
-  };
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    getItems();
-  }, []);
+    const getUsers = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+  
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_URL + "/management/user/v2",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        const responseData = await response.json();
+  
+        setUsers(responseData);
+      } catch (error) {
+        setResult({ hasError: true, message: error.message });
+      }
+    };
+
+    getUsers();
+  }, [getAccessTokenSilently]);
 
   return (
     <Container fluid>
       <Row>
         <Col>
-          <UserTable
-            items={items}
-            updateState={updateState}
-            deleteItemFromState={deleteItemFromState}
-          />{" "}
-        </Col>{" "}
-      </Row>{" "}
-      <Row>
-        <Col>
-          <OverlayTrigger
-            placement="top"
-            delay="500"
-            overlay={<Tooltip> {t("common:buttonLabel.export")} </Tooltip>}
-          >
-            <CSVLink
-              filename={"db.csv"}
-              variant="secondary"
-              style={{ float: "left", marginRight: "10px" }}
-              className="btn btn-primary"
-              data={items}
-            >
-              <FaFileDownload />
-            </CSVLink>{" "}
-          </OverlayTrigger>{" "}
-          <UserForm
-            buttonLabel={t("common:buttonLabel.add")}
-            addItemToState={addItemToState}
-          />{" "}
+          {!result.hasError ? (
+            <UserTable users={users} />
+          ) : (
+            <Alert variant="danger"> {result.message} </Alert>
+          )}{" "}
         </Col>{" "}
       </Row>{" "}
     </Container>

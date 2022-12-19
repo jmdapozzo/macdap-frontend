@@ -1,24 +1,16 @@
 {
   "title": "Utilisateurs",
 
-  "dialogTitle": {
-    "add": "Ajouter un nouvel utilisateur",
-    "edit": "Éditer un utilisateur"
+  "dialog": {
+    "title": "Utilisateur"
   },
 
   "fieldLabel": {
     "id": "ID",
-    "first": "Prénom",
-    "last": "Nom",
+    "given_name": "Prénom",
+    "family_name": "Nom",
     "email": "Courriel",
-    "phone": "Téléphone",
-    "location": "Localité",
-    "hobby": "Hobby",
-    "actions": "Actions"
-  },
-
-  "fieldPlaceholder": {
-    "phone": "pe. 555-555-1212",
-    "location": "Ville, Province"
+    "phone_number": "Téléphone",
+    "last_login": "Dernière connexion"
   }
 }

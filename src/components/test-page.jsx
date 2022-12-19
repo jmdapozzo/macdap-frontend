@@ -10,7 +10,7 @@ const TestPage = () => {
 
   const { getAccessTokenSilently } = useAuth0();
 
-  const callApi = async () => {
+  const callPublicApi = async () => {
     try {
       const response = await fetch(`${serverUrl}/api/public`);
 
@@ -22,11 +22,29 @@ const TestPage = () => {
     }
   };
 
-  const callSecureApi = async () => {
+  const callPrivateApi = async () => {
     try {
       const token = await getAccessTokenSilently();
 
       const response = await fetch(`${serverUrl}/api/private`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      setMessage(responseData.message);
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
+
+  const callPrivateScopedApi = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+
+      const response = await fetch(`${serverUrl}/api/private-scoped`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,11 +67,18 @@ const TestPage = () => {
         the access token using the Auth0 Audience value.
       </p>
       <ButtonGroup>
-        <Button onClick={callApi} color="primary" className="mt-5">
+        <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
           Get public message
         </Button>
-        <Button onClick={callSecureApi} color="primary" className="mt-5">
+        <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1">
           Get private message
+        </Button>
+        <Button
+          onClick={callPrivateScopedApi}
+          color="primary"
+          className="mt-5 m-1"
+        >
+          Get private-scoped message
         </Button>
       </ButtonGroup>
       {message && (
