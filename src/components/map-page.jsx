@@ -9,8 +9,6 @@ import SkiInfoWindow from "./info-windows/ski-info-window";
 import HomeInfoWindow from "./info-windows/home-info-window";
 //import mapStyles from "../mapStyles";
 
-const libraries = [];
-
 const mapContainerStyle = {
   height: "45rem",
 };
