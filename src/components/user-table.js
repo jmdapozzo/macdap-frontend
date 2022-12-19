@@ -1,18 +1,29 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Table } from "react-bootstrap";
-import { DateTime, Duration } from "luxon";
+import { Table, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
+import { FaUserEdit, FaTrashAlt } from "react-icons/fa";
+import moment from "moment";
+import "moment/locale/fr";
 import UserForm from "./user-form";
 
-function UserTable({ users }) {
+function UserTable(props) {
   const { t } = useTranslation(["user", "common"]);
   const [selectedUserIndex, setSelectedUserIndex] = useState(null);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleOnRowClick = (index) => {
+  const handleEditUser = (index) => {
     setSelectedUserIndex(index);
     setShow(true);
+  };
+
+  const handleDeleteUser = (id) => {
+    let confirmDelete = window.confirm(
+      t("common:alertMsg.areYouSureDeleteItem")
+    );
+    if (confirmDelete) {
+      props.deleteUser(id);
+    }
   };
 
   return (
@@ -25,18 +36,54 @@ function UserTable({ users }) {
             <th> {t("fieldLabel.email")} </th>
             <th> {t("fieldLabel.phone_number")} </th>
             <th> {t("fieldLabel.last_login")} </th>
-            <th> Test </th>
+            <th>{t("fieldLabel.actions")}</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={user.user_id} onClick={() => handleOnRowClick(index)}>
+          {props.users.map((user, index) => (
+            <tr key={user.user_id}>
               <td> {user.family_name} </td>
               <td> {user.given_name} </td>
               <td> {user.email} </td>
               <td> {user.phone_number} </td>
-              <td> {DateTime.fromISO(user.last_login).setLocale(navigator.language).toLocaleString(DateTime.DATETIME_FULL)} </td>
-              <td> {Duration.fromMillis('3600000').shiftTo('days', 'hours').toHuman()} </td>
+              <td>
+                {moment
+                  .duration(moment(user.last_login).diff(moment()))
+                  .locale(navigator.language)
+                  .humanize(true)}{" "}
+              </td>
+              <td>
+                <div>
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={<Tooltip>{t("common:buttonLabel.edit")}</Tooltip>}
+                  >
+                    <Button
+                      variant="success"
+                      className="me-2"
+                      onClick={() => handleEditUser(user.user_id)}
+                    >
+                      <FaUserEdit />
+                    </Button>
+                  </OverlayTrigger>
+
+                  <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={
+                      <Tooltip>{t("common:buttonLabel.delete")}</Tooltip>
+                    }
+                  >
+                    <Button
+                      variant="success"
+                      onClick={() => handleDeleteUser(user.user_id)}
+                    >
+                      <FaTrashAlt />
+                    </Button>
+                  </OverlayTrigger>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -45,7 +92,7 @@ function UserTable({ users }) {
         <UserForm
           show={show}
           handleClose={handleClose}
-          users={users}
+          users={props.users}
           selectedUserIndex={selectedUserIndex}
         />
       ) : null}

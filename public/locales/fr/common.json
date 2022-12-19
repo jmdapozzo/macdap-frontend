@@ -9,5 +9,19 @@
     "navBar": {
         "login": "Connexion",
         "logout": "Déconnexion"
+    },
+    "buttonLabel": {
+        "open": "Ouvrir",
+        "close": "Fermer",
+        "add": "Ajouter",
+        "edit": "Éditer",
+        "delete": "Supprimer",
+        "saveChanges": "Sauvegarder",
+        "export": "Exporter",
+        "next": "Suivant",
+        "previous": "Précédent"
+    },
+    "alertMsg": {
+        "areYouSureDeleteItem": "Ëtes-vous certain de vouloir supprimer cet item?"
     }
 }

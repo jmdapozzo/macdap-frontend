@@ -51,7 +51,7 @@ function App(props) {
             element={<ProtectedRoute component={TemplatePage} />}
           />
           <Route path="/test" element={<TestPage />} />
-          <Route component={NoMatchPage} />
+          <Route path="*" element={<NoMatchPage />} />
         </Routes>
       </Layout>
       <Footer />

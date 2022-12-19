@@ -9,5 +9,19 @@
     "navBar": {
         "login": "Login",
         "logout": "Logout"
+    },
+    "buttonLabel": {
+        "open": "Open",
+        "close": "Close",
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "saveChanges": "Save Changes",
+        "export": "Export",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "alertMsg": {
+        "areYouSureDeleteItem": "Are you sure you want to delete this item?"
     }
 }

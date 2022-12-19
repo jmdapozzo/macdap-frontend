@@ -11,6 +11,7 @@
     "family_name": "Nom",
     "email": "Courriel",
     "phone_number": "Téléphone",
-    "last_login": "Dernière connexion"
+    "last_login": "Dernière connexion",
+    "actions": "Actions"
   }
 }

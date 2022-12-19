@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Table } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/fr";
 import DeviceForm from "./device-form";
 
 function DeviceTable({ devices }) {
@@ -37,9 +39,20 @@ function DeviceTable({ devices }) {
               <td> {device.platform_type} </td>
               <td> {device.platform_id} </td>
               <td> {device.owner} </td>
-              <td> {device.initial_connection} </td>
-              <td> {device.last_connection} </td> <td> {device.title} </td>
-              <td> {device.version} </td> <td> {device.build_number} </td>
+              <td>
+                {moment(device.initial_connection)
+                  .locale(navigator.language)
+                  .format("lll")}
+              </td>
+              <td>
+                {moment
+                  .duration(moment(device.last_connection).diff(moment()))
+                  .locale(navigator.language)
+                  .humanize(true)}
+              </td>
+              <td> {device.title} </td>
+              <td> {device.version} </td>
+              <td> {device.build_number} </td>
               <td> {device.connection_count} </td>
             </tr>
           ))}

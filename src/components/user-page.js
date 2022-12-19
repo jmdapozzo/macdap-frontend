@@ -8,12 +8,33 @@ function UserPage(props) {
   const [result, setResult] = useState({ hasError: false });
 
   const { getAccessTokenSilently } = useAuth0();
+  const deleteUser = (id) => {
+    window.confirm(`Deleting user with id ${id}`);
+    const updatedItems = users.filter((user) => user.user_id !== id);
+    setUsers(updatedItems);
+    /*
+      fetch(process.env.REACT_APP_SERVER_URL + "/users", {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      })
+        .then((response) => response.json())
+        .then((item) => {
+          users.deleteItemFromState(id);
+        })
+        .catch((err) => console.log(err));
+        */
+  };
 
   useEffect(() => {
     const getUsers = async () => {
       try {
         const token = await getAccessTokenSilently();
-  
+
         const response = await fetch(
           process.env.REACT_APP_SERVER_URL + "/management/user/v2",
           {
@@ -22,9 +43,9 @@ function UserPage(props) {
             },
           }
         );
-  
+
         const responseData = await response.json();
-  
+
         setUsers(responseData);
       } catch (error) {
         setResult({ hasError: true, message: error.message });
@@ -39,7 +60,7 @@ function UserPage(props) {
       <Row>
         <Col>
           {!result.hasError ? (
-            <UserTable users={users} />
+            <UserTable users={users} deleteUser={deleteUser} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
           )}{" "}
