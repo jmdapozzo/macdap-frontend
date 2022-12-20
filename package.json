@@ -1,5 +1,5 @@
 {
-    "name": "macdap-fe",
+    "name": "macdap-frontend",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -23,10 +23,8 @@
         "react-i18next": "^12.1.1",
         "react-icons": "^4.7.1",
         "react-router-dom": "^6.4.5",
+        "react-scripts": "^5.0.1",
         "web-vitals": "^3.1.0"
-    },
-    "devDependencies": {
-        "react-scripts": "^5.0.1"
     },
     "scripts": {
         "start": "react-scripts start",
