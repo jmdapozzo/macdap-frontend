@@ -13,7 +13,7 @@ function UserPage(props) {
     const updatedItems = users.filter((user) => user.user_id !== id);
     setUsers(updatedItems);
     /*
-      fetch(process.env.REACT_APP_SERVER_URL + "/users", {
+      fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/users", {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ function UserPage(props) {
         const token = await getAccessTokenSilently();
 
         const response = await fetch(
-          process.env.REACT_APP_SERVER_URL + "/management/user/v2",
+          process.env.REACT_APP_SERVER_ENDPOINT + "/management/user/v2",
           {
             headers: {
               Authorization: `Bearer ${token}`,

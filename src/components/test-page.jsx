@@ -6,7 +6,7 @@ import { Container, ButtonGroup, Button } from "react-bootstrap";
 const TestPage = () => {
   const { t } = useTranslation(["test"]);
   const [message, setMessage] = useState("");
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
+  const serverUrl = process.env.REACT_APP_SERVER_ENDPOINT;
 
   const { getAccessTokenSilently } = useAuth0();
 

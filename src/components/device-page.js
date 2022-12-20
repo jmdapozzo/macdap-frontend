@@ -15,7 +15,7 @@ function DevicePage(props) {
         const token = await getAccessTokenSilently();
   
         const response = await fetch(
-          process.env.REACT_APP_SERVER_URL + "/device/v2",
+          process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2",
           {
             headers: {
               Authorization: `Bearer ${token}`,

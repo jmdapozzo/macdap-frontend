@@ -8,14 +8,14 @@ function SopfeuPage(props) {
   const [result, setResult] = useState({ hasError: false });
 
   const getColors = () => {
-    fetch(process.env.REACT_APP_SERVER_URL + "/sopfeu/risk-colors/v1")
+    fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/sopfeu/risk-colors/v1")
       .then((response) => response.json())
       .then((riskColors) => setRiskColors(riskColors))
       .catch((err) => setResult({ hasError: true, message: err.message }));
   };
 
   const getFireRisks = () => {
-    fetch(process.env.REACT_APP_SERVER_URL + "/sopfeu/fire-risks/v1")
+    fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/sopfeu/fire-risks/v1")
       .then((response) => response.json())
       .then((fireRisks) => setFireRisks(fireRisks))
       .catch((err) => setResult({ hasError: true, message: err.message }));
