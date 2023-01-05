@@ -16,7 +16,7 @@ function TemplatePage(props) {
           <span slot="not-allowed">Install not allowed using HTTP!</span>
         </esp-web-install-button>
 
-        <esp-web-install-button manifest="./releases/clock.manifest.json">
+        <esp-web-install-button manifest="https://production.backend.macdap.net/esp32/D4-88-88/clock.manifest.json">
           <button type="button" className="btn btn-primary m-3" slot="activate">
             {t("install", { name: "Clock" })}
           </button>
