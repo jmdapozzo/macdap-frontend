@@ -8,7 +8,7 @@ function TemplatePage(props) {
   return (
     <div>
       <h1>{t("title")}</h1>
-        <esp-web-install-button manifest="./releases/sopfeu.manifest.json">
+        <esp-web-install-button manifest="https://production.backend.macdap.net/esp32/D4-88-88/sopfeu.manifest.json">
           <button type="button" className="btn btn-primary m-3" slot="activate">
             {t("install", { name: "SOPFEU" })}
           </button>
@@ -24,7 +24,7 @@ function TemplatePage(props) {
           <span slot="not-allowed">Install not allowed using HTTP!</span>
         </esp-web-install-button>
 
-        <esp-web-install-button manifest="./releases/chronograph.manifest.json">
+        <esp-web-install-button manifest="https://production.backend.macdap.net/esp32/D4-88-88/chronograph.manifest.json">
           <button type="button" className="btn btn-primary m-3" slot="activate">
             {t("install", { name: "Chronograph" })}
           </button>
