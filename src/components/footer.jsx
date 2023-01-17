@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+const package_json = require("../../package.json");
+
 function Footer() {
   const { t } = useTranslation(["common"]);
   return (
@@ -13,7 +15,7 @@ function Footer() {
           Copyright &copy; {t("company")} {new Date().getFullYear()}
         </Col>
         <Col className="d-flex justify-content-center">
-          {t("version")} {process.env.REACT_APP_VERSION}
+          {t("version")} {package_json.version}
         </Col>
         <Col className="d-flex justify-content-end">
           {t("brand")}
