@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/image";
+import {Container, Image} from "react-bootstrap";
 import logo from "../assets/images/logo/medium.png";
 
 function Header() {
