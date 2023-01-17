@@ -13,7 +13,6 @@ import SopfeuPage from "./components/sopfeu-page";
 import DevicePage from "./components/device-page";
 import UserPage from "./components/user-page";
 import ProfilePage from "./components/profile-page";
-import TemplatePage from "./components/template-page";
 import TestPage from "./components/test-page";
 import NoMatchPage from "./components/no-match-page";
 
@@ -45,10 +44,6 @@ function App(props) {
           <Route
             path="/profile"
             element={<ProtectedRoute component={ProfilePage} />}
-          />
-          <Route
-            path="/template"
-            element={<ProtectedRoute component={TemplatePage} />}
           />
           <Route path="/test" element={<TestPage />} />
           <Route path="*" element={<NoMatchPage />} />
