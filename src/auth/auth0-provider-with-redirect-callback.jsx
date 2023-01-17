@@ -19,6 +19,7 @@ const Auth0ProviderWithRedirectCallback = ({ children, ...props }) => {
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
       useRefreshTokens={true}
+      cacheLocation="localstorage"
       {...props}
     >
       {children}
