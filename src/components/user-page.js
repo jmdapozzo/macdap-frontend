@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import UserTable from "./user-table";
 
@@ -7,7 +8,8 @@ function UserPage(props) {
   const [users, setUsers] = useState([]);
   const [result, setResult] = useState({ hasError: false });
 
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isLoading } = useAuth0();
+  
   const deleteUser = (id) => {
     window.confirm(`Deleting user with id ${id}`);
     const updatedItems = users.filter((user) => user.user_id !== id);
@@ -54,6 +56,10 @@ function UserPage(props) {
 
     getUsers();
   }, [getAccessTokenSilently]);
+
+  if (isLoading) {
+    <Loading />;
+  }
 
   return (
     <Container fluid>

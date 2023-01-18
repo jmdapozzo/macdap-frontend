@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import DeviceTable from "./device-table";
 
@@ -7,7 +8,7 @@ function DevicePage(props) {
   const [devices, setDevices] = useState([]);
   const [result, setResult] = useState({ hasError: false });
 
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isLoading } = useAuth0();
 
   useEffect(() => {
     const getDevices = async () => {
@@ -33,6 +34,10 @@ function DevicePage(props) {
 
     getDevices();
   }, [getAccessTokenSilently]);
+
+  if (isLoading) {
+    <Loading />;
+  }
 
   return (
     <Container fluid>

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Container, ButtonGroup, Button } from "react-bootstrap";
+import Loading from "./loading";
+import { Container, ButtonGroup, Button, Alert } from "react-bootstrap";
 
 const TestPage = () => {
   const { t } = useTranslation(["test"]);
   const [message, setMessage] = useState("");
   const serverUrl = process.env.REACT_APP_SERVER_ENDPOINT;
 
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isLoading } = useAuth0();
 
   const callPublicApi = async () => {
     try {
@@ -58,14 +59,16 @@ const TestPage = () => {
     }
   };
 
+  if (isLoading) {
+    <Loading />;
+  }
+
   return (
     <Container className="mb-5">
       <h1 className="d-flex justify-content-center">{t("title")}</h1>
-      <p>
-        Use these buttons to call an external API. The protected API call has an
+      <Alert variant="danger"> Use these buttons to call an external API. The protected API call has an
         access token in its authorization header. The API server will validate
-        the access token using the Auth0 Audience value.
-      </p>
+        the access token using the Auth0 Audience value. </Alert>
       <ButtonGroup>
         <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
           Get public message
