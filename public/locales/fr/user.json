@@ -7,8 +7,7 @@
 
   "fieldLabel": {
     "id": "ID",
-    "given_name": "Prénom",
-    "family_name": "Nom",
+    "name": "Nom",
     "email": "Courriel",
     "phone_number": "Téléphone",
     "last_login": "Dernière connexion",

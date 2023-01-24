@@ -31,8 +31,7 @@ function UserTable(props) {
       <Table responsive hover striped bordered size="sm">
         <thead>
           <tr>
-            <th> {t("fieldLabel.family_name")} </th>
-            <th> {t("fieldLabel.given_name")} </th>
+            <th> {t("fieldLabel.name")} </th>
             <th> {t("fieldLabel.email")} </th>
             <th> {t("fieldLabel.phone_number")} </th>
             <th> {t("fieldLabel.last_login")} </th>
@@ -42,8 +41,7 @@ function UserTable(props) {
         <tbody>
           {props.users.map((user, index) => (
             <tr key={user.user_id}>
-              <td> {user.family_name} </td>
-              <td> {user.given_name} </td>
+              <td> {user.name} </td>
               <td> {user.email} </td>
               <td> {user.phone_number} </td>
               <td>

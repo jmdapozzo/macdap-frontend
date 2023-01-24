@@ -7,8 +7,7 @@
 
   "fieldLabel": {
     "user_id": "ID",
-    "given_name": "First Name",
-    "family_name": "Last Name",
+    "name": "Name",
     "email": "Email",
     "phone_number": "Phone Number",
     "last_login": "Last login",
