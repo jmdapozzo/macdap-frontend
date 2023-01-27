@@ -7,11 +7,13 @@
 
   "fieldLabel": {
     "device_id": "ID",
-    "owner": "Propriétaire",
+    "platform_identification": "Identification",
     "platform_type": "Plateforme",
     "platform_id": "ID Plateforme",
+    "owner": "Propriétaire",
     "initial_connection": "Connexion initiale",
     "last_connection": "Dernière connexion",
+    "last_seen": "Vu dernièrement",
     "title": "Application",
     "version": "Version",
     "build_number": "Build",

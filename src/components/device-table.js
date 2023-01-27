@@ -1,9 +1,38 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Table } from "react-bootstrap";
+import { FaLock, FaLockOpen } from "react-icons/fa";
 import moment from "moment";
 import "moment/locale/fr";
 import DeviceForm from "./device-form";
+
+const formatOwner = (company, contact, email) => {
+  if ((company) && (contact)) {
+    return `${company} (${contact})`;
+  } else if ((!company) && (contact)) {
+    return `${contact}`;
+  } else if ((company) && (!contact)) {
+    return `${company}`;
+  } else if ((email)) {
+    return `${email}`;
+  } else {
+    return "---";
+  }
+};
+
+const formatVersion = (version, isLocked) => {
+  if (isLocked) {
+    return `🔒 ${version}`;
+  } else {
+    return version;
+  }
+};
+
+const formatPlatformIdentification = (type, id) => {
+  ;
+    const truncID = parseInt(id.substring(0,8), 16);
+    return `${type}-${truncID.toString(16)}`.toLowerCase();
+};
 
 function DeviceTable({ devices }) {
   const { t } = useTranslation(["device", "common"]);
@@ -22,11 +51,13 @@ function DeviceTable({ devices }) {
       <Table responsive hover striped bordered size="sm">
         <thead>
           <tr>
+            <th> {t("fieldLabel.platform_identification")} </th>
             <th> {t("fieldLabel.platform_type")} </th>
             <th> {t("fieldLabel.platform_id")} </th>
             <th> {t("fieldLabel.owner")} </th>
             <th> {t("fieldLabel.initial_connection")} </th>
             <th> {t("fieldLabel.last_connection")} </th>
+            <th> {t("fieldLabel.last_seen")} </th>
             <th> {t("fieldLabel.title")} </th>
             <th> {t("fieldLabel.version")} </th>
             <th> {t("fieldLabel.build_number")} </th>
@@ -36,9 +67,10 @@ function DeviceTable({ devices }) {
         <tbody>
           {devices.map((device, index) => (
             <tr key={device.device_id} onClick={() => handleOnRowClick(index)}>
+              <td> {formatPlatformIdentification(device.platform_type, device.platform_id)} </td>
               <td> {device.platform_type} </td>
               <td> {device.platform_id} </td>
-              <td> {device.owner} </td>
+              <td> {formatOwner(device.company_name, device.contact_name, device.contact_email)}</td>
               <td>
                 {moment(device.initial_connection)
                   .locale(navigator.language)
@@ -50,8 +82,14 @@ function DeviceTable({ devices }) {
                   .locale(navigator.language)
                   .humanize(true)}
               </td>
+              <td>
+                {moment
+                  .duration(moment(device.last_seen).diff(moment()))
+                  .locale(navigator.language)
+                  .humanize(true)}
+              </td>
               <td> {device.title} </td>
-              <td> {device.version} </td>
+              <td> {formatVersion(device.version, device.lock_version)}</td>
               <td> {device.build_number} </td>
               <td> {device.connection_count} </td>
             </tr>
