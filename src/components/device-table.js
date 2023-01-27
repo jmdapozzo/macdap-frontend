@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Table } from "react-bootstrap";
-import { FaLock, FaLockOpen } from "react-icons/fa";
 import moment from "moment";
 import "moment/locale/fr";
 import DeviceForm from "./device-form";
