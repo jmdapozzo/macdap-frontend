@@ -33,6 +33,17 @@ const formatPlatformIdentification = (type, id) => {
     return `${type}-${truncID.toString(16)}`.toLowerCase();
 };
 
+const formatLastSeen = (lastSeen) => {
+  if (lastSeen) {
+    return moment
+    .duration(moment(lastSeen).diff(moment()))
+    .locale(navigator.language)
+    .humanize(true)
+  } else{
+    return "---";
+  }
+};
+
 function DeviceTable({ devices }) {
   const { t } = useTranslation(["device", "common"]);
 
@@ -82,10 +93,7 @@ function DeviceTable({ devices }) {
                   .humanize(true)}
               </td>
               <td>
-                {moment
-                  .duration(moment(device.last_seen).diff(moment()))
-                  .locale(navigator.language)
-                  .humanize(true)}
+                {formatLastSeen(device.last_seen)}
               </td>
               <td> {device.title} </td>
               <td> {formatVersion(device.version, device.lock_version)}</td>
