@@ -48,7 +48,7 @@ function UserTable(props) {
                 {moment
                   .duration(moment(user.last_login).diff(moment()))
                   .locale(navigator.language)
-                  .humanize(true)}{" "}
+                  .humanize(true)}
               </td>
               <td>
                 <div>

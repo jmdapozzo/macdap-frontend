@@ -14,7 +14,7 @@ function DevicePage(props) {
     const getDevices = async () => {
       try {
         const token = await getAccessTokenSilently();
-  
+
         const response = await fetch(
           process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2",
           {
@@ -23,9 +23,9 @@ function DevicePage(props) {
             },
           }
         );
-  
+
         const responseData = await response.json();
-  
+
         setDevices(responseData);
       } catch (error) {
         setResult({ hasError: true, message: error.message });
@@ -47,9 +47,9 @@ function DevicePage(props) {
             <DeviceTable devices={devices} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
-          )}{" "}
-        </Col>{" "}
-      </Row>{" "}
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 }

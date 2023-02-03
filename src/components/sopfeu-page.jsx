@@ -30,14 +30,13 @@ function SopfeuPage(props) {
     <Container fluid>
       <Row>
         <Col>
-          {" "}
           {!result.hasError ? (
             <SopfeuTable riskColors={riskColors} fireRisks={fireRisks} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
-          )}{" "}
-        </Col>{" "}
-      </Row>{" "}
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 }

@@ -22,10 +22,10 @@ const Profile = () => {
           <h1 className="d-flex justify-content-center">{t("title")}</h1>
         </Row>
         <Row className="align-items-center">
-          <div className="col-md-2 mb-3">
+          <div className="col-md-1 mb-3">
             <Image src={picture} className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"></Image>
           </div>
-          <div className="col-md text-center text-md-left">
+          <div className="col-md text-md-left">
             <h2>{name}</h2>
             <p className="lead text-muted">{email}</p>
           </div>

@@ -69,9 +69,9 @@ function UserPage(props) {
             <UserTable users={users} deleteUser={deleteUser} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
-          )}{" "}
-        </Col>{" "}
-      </Row>{" "}
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 }
