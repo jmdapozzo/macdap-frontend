@@ -14,6 +14,7 @@ import DevicePage from "./components/device-page";
 import UserPage from "./components/user-page";
 import ProfilePage from "./components/profile-page";
 import TestPage from "./components/test-page";
+import SupportPage from "./components/support-page";
 import NoMatchPage from "./components/no-match-page";
 
 function App(props) {
@@ -46,6 +47,7 @@ function App(props) {
             element={<ProtectedRoute component={ProfilePage} />}
           />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="*" element={<NoMatchPage />} />
         </Routes>
       </Layout>
