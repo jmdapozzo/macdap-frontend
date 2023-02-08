@@ -44,6 +44,23 @@ const formatLastSeen = (lastSeen) => {
   }
 };
 
+const formatRow = (initialConnection, lastSeen) => {
+  const initialConnectionMoment = moment(initialConnection);
+  const lastSeenMoment = moment(lastSeen);
+  const dayDiff = moment().diff(initialConnectionMoment, 'days')
+  const hourDiff = moment().diff(lastSeenMoment, 'hours')
+
+  console.log("lastSeen: " + lastSeen);
+  console.log("dayDiff: " + dayDiff);
+  console.log("hourDiff: " + hourDiff);
+
+  if ((dayDiff > 1) && ((!lastSeen) || (hourDiff > 24))) {
+    return "table-danger"
+  } else{
+    return "";
+  }
+};
+
 function DeviceTable({ devices }) {
   const { t } = useTranslation(["device", "common"]);
 
@@ -76,7 +93,7 @@ function DeviceTable({ devices }) {
         </thead>
         <tbody>
           {devices.map((device, index) => (
-            <tr key={device.device_id} onClick={() => handleOnRowClick(index)}>
+            <tr class={formatRow(device.initial_connection, device.last_seen)} key={device.device_id} onClick={() => handleOnRowClick(index)}>
               <td> {formatPlatformIdentification(device.platform_type, device.platform_id)} </td>
               <td> {device.platform_type} </td>
               <td> {device.platform_id} </td>
