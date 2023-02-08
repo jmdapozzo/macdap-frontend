@@ -9,6 +9,7 @@ import Loading from "./components/loading";
 import ProtectedRoute from "./auth/protected-route";
 import HomePage from "./components/home-page";
 import MapPage from "./components/map-page";
+import MapNewPage from "./components/map-new-page";
 import SopfeuPage from "./components/sopfeu-page";
 import DevicePage from "./components/device-page";
 import UserPage from "./components/user-page";
@@ -33,6 +34,7 @@ function App(props) {
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/mapnew" element={<MapNewPage />} />
           <Route path="/sopfeu" element={<SopfeuPage />} />
           <Route
             path="/device"
