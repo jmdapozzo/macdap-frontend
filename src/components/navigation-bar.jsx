@@ -29,7 +29,6 @@ const NavigationBar = () => {
           <Nav>
             <Nav.Link href="/">{t("home:title")}</Nav.Link>
             <Nav.Link href="/map">{t("map:title")}</Nav.Link>
-            <Nav.Link href="/mapnew">{t("map:title")} NEW</Nav.Link>
             <Nav.Link href="/sopfeu">{t("sopfeu:title")}</Nav.Link>
             {isAuthenticated && (
               <Nav.Link href="/device">{t("device:title")}</Nav.Link>

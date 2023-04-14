@@ -10,7 +10,7 @@ function Footer() {
   const { t } = useTranslation(["common"]);
   return (
     <Container fluid className="px-4">
-      <hr class="mt-2 mb-1"/>
+      <hr className="mt-2 mb-1"/>
 
       <Row>
         <Col className="d-flex justify-content-start">

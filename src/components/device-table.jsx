@@ -93,7 +93,7 @@ function DeviceTable({ devices }) {
         </thead>
         <tbody>
           {devices.map((device, index) => (
-            <tr class={formatRow(device.initial_connection, device.last_seen)} key={device.device_id} onClick={() => handleOnRowClick(index)}>
+            <tr className={formatRow(device.initial_connection, device.last_seen)} key={device.device_id} onClick={() => handleOnRowClick(index)}>
               <td> {formatPlatformIdentification(device.platform_type, device.platform_id)} </td>
               <td> {device.platform_type} </td>
               <td> {device.platform_id} </td>
