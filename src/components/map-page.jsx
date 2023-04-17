@@ -8,7 +8,7 @@ const MapPage = () => {
   return (
     <Container className="mb-5">
       <h1 className="d-flex justify-content-center">{t("title")}</h1>
-      <Map token={process.env.REACT_APP_APPLE_MAP_JWT}>
+      <Map token={process.env.REACT_APP_APPLE_MAP_JWT} width="100px" height="100px">
         <Marker latitude={46.52} longitude={6.57} />
       </Map>
     </Container>
