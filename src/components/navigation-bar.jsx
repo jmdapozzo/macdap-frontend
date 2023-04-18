@@ -39,7 +39,7 @@ const NavigationBar = () => {
             {isAuthenticated && (
               <Nav.Link href="/profile">{t("profile:title")}</Nav.Link>
             )}
-            <Nav.Link href="/test">{t("test:title")}</Nav.Link>
+            {/* <Nav.Link href="/test">{t("test:title")}</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
