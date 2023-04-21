@@ -1,11 +1,11 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Container } from "react-bootstrap";
 import { Map, Marker } from "mapkit-react";
 
 const MapPage = () => {
   const { t } = useTranslation(["map"]);
-
+/*
   const [currentPosition, setCurrentPosition] = useState({});
   const currentPositionSuccess = (position) => {
     const currentPosition = {
@@ -29,7 +29,7 @@ const MapPage = () => {
       currentPositionError
     );
   }, []);
-
+*/
   const [markerPositions, setMarkerPositions] = useState([]);
 
   const onMapClick = useCallback((event) => {
@@ -56,6 +56,7 @@ const MapPage = () => {
         token={process.env.REACT_APP_APPLE_MAP_JWT}
         width="100px"
         height="100px"
+        title={t("title")}
         showsUserLocation="true"
         showsUserLocationControl="true"
         onClick={onMapClick}
