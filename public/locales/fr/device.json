@@ -11,6 +11,10 @@
     "platform_type": "Plateforme",
     "platform_id": "ID Plateforme",
     "owner": "Propriétaire",
+    "company_name": "Compagnie",
+    "contact_name": "Contact",
+    "contact_email": "Courriel",
+    "location_name": "Emplacement",
     "initial_connection": "Connexion initiale",
     "last_connection": "Dernière connexion",
     "last_seen": "Vu dernièrement",
@@ -18,5 +22,20 @@
     "version": "Version",
     "build_number": "Build",
     "connection_count": "Nb de connexions"
+  },
+
+  "buttonLabel": {
+    "unlock": "Débarrer",
+    "lock": "Barrer"
+  },
+
+  "alertMsg": {
+    "areYouSureUnlockDevice": "Ëtes-vous certain de vouloir débarrer la version de cette unité?",
+    "areYouSureLockDevice": "Ëtes-vous certain de vouloir barrer la version de cette unité?"
+  },
+
+  "errorMsg": {
+    "cannotUpdateDevice": "Error updating device information:",
+    "cannotUpdateLockStatus": "Le changement de statut de la version a échoué!"
   }
 }

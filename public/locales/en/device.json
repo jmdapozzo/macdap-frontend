@@ -11,6 +11,10 @@
     "platform_type": "Platform",
     "platform_id": "Platform ID",
     "owner": "Owner",
+    "company_name": "Company",
+    "contact_name": "Contact",
+    "contact_email": "email",
+    "location_name": "Location",
     "initial_connection": "Initial connection",
     "last_connection": "Last connection",
     "last_seen": "Last seen",
@@ -18,5 +22,20 @@
     "version": "Version",
     "build_number": "Build",
     "connection_count": "Connection count"
+  },
+
+  "buttonLabel": {
+    "unlock": "Unlock",
+    "lock": "Lock"
+  },
+
+  "alertMsg": {
+    "areYouSureUnlockDevice": "Are you sure you want to unlock this device version?",
+    "areYouSureLockDevice": "Are you sure you want to lock this device version?"
+  },
+
+  "errorMsg": {
+    "cannotUpdateDevice": "Error updating device information:",
+    "cannotUpdateLockStatus": "Error updating lock status change!"
   }
 }
