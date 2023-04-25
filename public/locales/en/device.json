@@ -24,9 +24,10 @@
     "connection_count": "Connection count"
   },
 
-  "buttonLabel": {
-    "unlock": "Unlock",
-    "lock": "Lock"
+  "tooltip": {
+    "edit": "Edit owner information",
+    "unlock": "Unlock this version",
+    "lock": "Lock this version"
   },
 
   "alertMsg": {

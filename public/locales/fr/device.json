@@ -24,9 +24,10 @@
     "connection_count": "Nb de connexions"
   },
 
-  "buttonLabel": {
-    "unlock": "Débarrer",
-    "lock": "Barrer"
+  "tooltip": {
+    "edit": "Éditer les coordonnées du propriétaire",
+    "unlock": "Débarrer la version",
+    "lock": "Barrer la version"
   },
 
   "alertMsg": {

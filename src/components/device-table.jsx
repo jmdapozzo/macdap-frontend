@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Table, Button } from "react-bootstrap";
+import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/fr";
-import DeviceForm from "./device-form";
+//import DeviceForm from "./device-form";
+import DeviceCanvas from "./device-canvas";
 
 const formatOwner = (company, contact, email) => {
   if (company && contact) {
@@ -24,6 +25,14 @@ const formatVersion = (version, isLocked) => {
     return `🔒 ${version}`;
   } else {
     return version;
+  }
+};
+
+const formatVersionClass = (isLocked) => {
+  if (isLocked) {
+    return "link-primary";
+  } else {
+    return "link-danger";
   }
 };
 
@@ -71,13 +80,13 @@ function DeviceTable({ devices, updateDeviceOwner, updateDeviceLockVersion }) {
   };
 
   const handleEdit = (device) => {
-    let editDevice = { ...device }
+    let editDevice = { ...device };
     setSelectedDevice(editDevice);
     setShow(true);
   };
 
   const handleOnToggleLock = (device) => {
-    let editDevice = { ...device }
+    let editDevice = { ...device };
     let confirmToggleLock = window.confirm(
       editDevice.lock_version
         ? t("device:alertMsg.areYouSureUnlockDevice")
@@ -122,14 +131,19 @@ function DeviceTable({ devices, updateDeviceOwner, updateDeviceLockVersion }) {
               </td>
               <td> {device.platform_type} </td>
               <td> {device.platform_id} </td>
-              <td>
-                {" "}
-                {formatOwner(
-                  device.company_name,
-                  device.contact_name,
-                  device.contact_email
-                )}
-              </td>
+              <OverlayTrigger
+                placement="left"
+                delay="500"
+                overlay={<Tooltip>{t("device:tooltip.edit")}</Tooltip>}
+              >
+                <td className="link-primary" onClick={() => handleEdit(device)}>
+                  {formatOwner(
+                    device.company_name,
+                    device.contact_name,
+                    device.contact_email
+                  )}
+                </td>
+              </OverlayTrigger>
               <td>
                 {moment(device.initial_connection)
                   .locale(navigator.language)
@@ -143,25 +157,32 @@ function DeviceTable({ devices, updateDeviceOwner, updateDeviceLockVersion }) {
               </td>
               <td>{formatLastSeen(device.last_seen)}</td>
               <td>{device.title}</td>
-              <td>{formatVersion(device.version, device.lock_version)}</td>
-              <td> {device.build_number} </td>
-              <td> {device.connection_count} </td>
-              <td>
-                <Button onClick={() => handleEdit(device)}>
-                  {t("common:buttonLabel.edit")}
-                </Button>
-              </td>
-              <td>
-                <Button onClick={() => handleOnToggleLock(device)}>
-                  {t("device:buttonLabel.unlock")}
-                </Button>
-              </td>
+              <OverlayTrigger
+                placement="left"
+                delay="500"
+                overlay={
+                  <Tooltip>
+                    {device.lock_version
+                      ? t("device:tooltip.unlock")
+                      : t("device:tooltip.lock")}
+                  </Tooltip>
+                }
+              >
+                <td
+                  className={formatVersionClass(device.lock_version)}
+                  onClick={() => handleOnToggleLock(device)}
+                >
+                  {formatVersion(device.version, device.lock_version)}
+                </td>
+              </OverlayTrigger>
+              <td>{device.build_number}</td>
+              <td>{device.connection_count}</td>
             </tr>
           ))}
         </tbody>
       </Table>
       {show ? (
-        <DeviceForm show={show} close={handleClose} device={selectedDevice} />
+        <DeviceCanvas show={show} close={handleClose} device={selectedDevice} />
       ) : null}
     </div>
   );
