@@ -24,7 +24,7 @@ const formatVersion = (version, isLocked) => {
   if (isLocked) {
     return `🔒 ${version}`;
   } else {
-    return version;
+    return `🔻 ${version}`;
   }
 };
 
