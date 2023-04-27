@@ -36,8 +36,7 @@ const formatVersionClass = (isLocked) => {
 };
 
 const formatPlatformIdentification = (type, id) => {
-  const truncID = parseInt(id.substring(0, 8), 16);
-  return `${type}-${truncID.toString(16)}`.toLowerCase();
+  return `${type}-${id.substring(4, 8)}`.toLowerCase();
 };
 
 const formatLastSeen = (lastSeen) => {
