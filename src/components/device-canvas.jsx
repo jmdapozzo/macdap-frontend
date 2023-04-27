@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Offcanvas, Form, Button } from "react-bootstrap";
 
-function DeviceCanvas({ show, close, device }) {
+function DeviceCanvas({ show, close, identification, device }) {
   const { t } = useTranslation(["device", "common"]);
 
   const [form, setValues] = useState({
@@ -38,7 +38,7 @@ function DeviceCanvas({ show, close, device }) {
   return (
     <Offcanvas show={show} onHide={close} placement="start">
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>{t("dialog.title")}</Offcanvas.Title>
+        <Offcanvas.Title>{t("dialog.title")} {identification}</Offcanvas.Title>
       </Offcanvas.Header>
 
       <Offcanvas.Body>
@@ -54,7 +54,9 @@ function DeviceCanvas({ show, close, device }) {
               onChange={onChange}
               value={form.company === null ? "" : form.company}
             />
-            <Form.Label htmlFor="company">{t("fieldLabel.company_name")}</Form.Label>
+            <Form.Label htmlFor="company">
+              {t("fieldLabel.company_name")}
+            </Form.Label>
           </Form.Floating>
           <Form.Floating className="mb-3">
             <Form.Control
@@ -64,7 +66,9 @@ function DeviceCanvas({ show, close, device }) {
               onChange={onChange}
               value={form.contact === null ? "" : form.contact}
             />
-            <Form.Label htmlFor="contact">{t("fieldLabel.contact_name")}</Form.Label>
+            <Form.Label htmlFor="contact">
+              {t("fieldLabel.contact_name")}
+            </Form.Label>
           </Form.Floating>
           <Form.Floating className="mb-3">
             <Form.Control
@@ -74,7 +78,9 @@ function DeviceCanvas({ show, close, device }) {
               onChange={onChange}
               value={form.email === null ? "" : form.email}
             />
-            <Form.Label htmlFor="email">{t("fieldLabel.contact_email")}</Form.Label>
+            <Form.Label htmlFor="email">
+              {t("fieldLabel.contact_email")}
+            </Form.Label>
           </Form.Floating>
           <Form.Floating className="mb-3">
             <Form.Control
@@ -84,7 +90,9 @@ function DeviceCanvas({ show, close, device }) {
               onChange={onChange}
               value={form.location === null ? "" : form.location}
             />
-            <Form.Label htmlFor="location">{t("fieldLabel.location_name")}</Form.Label>
+            <Form.Label htmlFor="location">
+              {t("fieldLabel.location_name")}
+            </Form.Label>
           </Form.Floating>
         </Form>
 
