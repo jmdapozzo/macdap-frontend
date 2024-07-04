@@ -41,11 +41,35 @@ const TestPage = () => {
     }
   };
 
-  const callPrivateScopedApi = async () => {
+  const callPrivateScopedApiReadMessages = async () => {
     try {
-      const token = await getAccessTokenSilently();
+      const token = await getAccessTokenSilently({
+        ignoreCache: true,
+        scope: 'read:messages',
+      });
 
-      const response = await fetch(`${serverUrl}/api/private-scoped`, {
+      const response = await fetch(`${serverUrl}/api/private-scoped-read-messages`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      setMessage(responseData.message);
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
+
+  const callPrivateScopedApiEditDevices = async () => {
+    try {
+      const token = await getAccessTokenSilently({
+        ignoreCache: true,
+        scope: 'edit:devices',
+      });
+
+      const response = await fetch(`${serverUrl}/api/private-scoped-edit-devices`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -77,11 +101,18 @@ const TestPage = () => {
           Get private message
         </Button>
         <Button
-          onClick={callPrivateScopedApi}
+          onClick={callPrivateScopedApiReadMessages}
           color="primary"
           className="mt-5 m-1"
         >
-          Get private-scoped message
+          Get private-scoped message (read:messages)
+        </Button>
+        <Button
+          onClick={callPrivateScopedApiEditDevices}
+          color="primary"
+          className="mt-5 m-1"
+        >
+          Get private-scoped message (edit:devices)
         </Button>
       </ButtonGroup>
       {message && (
