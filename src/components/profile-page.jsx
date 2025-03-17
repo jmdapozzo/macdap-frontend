@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth0 } from "@auth0/auth0-react";
+import { dummyAuth0 } from "../auth/dummy-auth0";
 import Loading from "./loading";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,7 +8,7 @@ import Image from "react-bootstrap/Image"
 
 const Profile = () => {
   const { t } = useTranslation(["profile"]);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = dummyAuth0();
   const { name, picture, email } = user;
 
   if (isLoading) {

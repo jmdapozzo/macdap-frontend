@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth0 } from "@auth0/auth0-react";
+import { dummyAuth0 } from "../auth/dummy-auth0";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -19,7 +19,7 @@ const NavigationBar = () => {
     "test",
   ]);
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = dummyAuth0();
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { dummyAuth0 } from "../auth/dummy-auth0";
 import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import UserTable from "./user-table";
@@ -8,7 +8,7 @@ function UserPage(props) {
   const [users, setUsers] = useState([]);
   const [result, setResult] = useState({ hasError: false });
 
-  const { getAccessTokenSilently, isLoading } = useAuth0();
+  const { getAccessToken, isLoading } = dummyAuth0();
   
   const deleteUser = (id) => {
     window.confirm(`Deleting user with id ${id}`);
@@ -35,7 +35,7 @@ function UserPage(props) {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const token = await getAccessTokenSilently();
+        const token = await getAccessToken();
 
         const response = await fetch(
           process.env.REACT_APP_SERVER_ENDPOINT + "/management/user/v2",

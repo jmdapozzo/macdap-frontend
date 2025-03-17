@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth0 } from "@auth0/auth0-react";
+import { dummyAuth0 } from "../auth/dummy-auth0";
 import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import DeviceTable from "./device-table";
@@ -11,12 +11,12 @@ function DevicePage(props) {
   const [devices, setDevices] = useState([]);
   const [result, setResult] = useState({ hasError: false });
 
-  const { getAccessTokenSilently, isLoading } = useAuth0();
+  const { getAccessToken, isLoading } = dummyAuth0();
 
   useEffect(() => {
     const getDevices = async () => {
       try {
-        const token = await getAccessTokenSilently();
+        const token = await getAccessToken();
 
         const response = await fetch(
           process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2",
@@ -36,7 +36,7 @@ function DevicePage(props) {
     };
 
     getDevices();
-  }, [getAccessTokenSilently]);
+  }, [getAccessToken]);
 
   const updateDeviceOwner = async (device) => {
 
@@ -49,7 +49,7 @@ function DevicePage(props) {
     };
 
     try {
-      const token = await getAccessTokenSilently();
+      const token = await getAccessToken();
 
       const response = await fetch(
         process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2/owner",
@@ -87,7 +87,7 @@ function DevicePage(props) {
     };
 
     try {
-      const token = await getAccessTokenSilently();
+      const token = await getAccessToken();
 
       const response = await fetch(
         process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2/lock-version",

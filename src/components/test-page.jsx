@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth0 } from "@auth0/auth0-react";
-import Loading from "./loading";
+import { dummyAuth0 } from "../auth/dummy-auth0";
 import { Container, ButtonGroup, Button, Alert } from "react-bootstrap";
 
 const TestPage = () => {
@@ -9,7 +8,7 @@ const TestPage = () => {
   const [message, setMessage] = useState("");
   const serverUrl = process.env.REACT_APP_SERVER_ENDPOINT;
 
-  const { getAccessTokenSilently, isLoading } = useAuth0();
+  const { getAccessToken } = dummyAuth0();
 
   const callPublicApi = async () => {
     try {
@@ -25,7 +24,7 @@ const TestPage = () => {
 
   const callPrivateApi = async () => {
     try {
-      const token = await getAccessTokenSilently();
+      const token = await getAccessToken();
 
       const response = await fetch(`${serverUrl}/api/private`, {
         headers: {
@@ -41,14 +40,14 @@ const TestPage = () => {
     }
   };
 
-  const callPrivateScopedApiReadMessages = async () => {
+  const callPrivateScopedApi = async () => {
     try {
-      const token = await getAccessTokenSilently({
+      const token = await getAccessToken({
         ignoreCache: true,
-        scope: 'read:messages',
+        scope: 'test-role',
       });
 
-      const response = await fetch(`${serverUrl}/api/private-scoped-read-messages`, {
+      const response = await fetch(`${serverUrl}/api/private-scoped`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,14 +61,11 @@ const TestPage = () => {
     }
   };
 
-  const callPrivateScopedApiEditDevices = async () => {
+  const callPrivateIotApi = async () => {
     try {
-      const token = await getAccessTokenSilently({
-        ignoreCache: true,
-        scope: 'edit:devices',
-      });
+      const token = await getAccessToken();
 
-      const response = await fetch(`${serverUrl}/api/private-scoped-edit-devices`, {
+      const response = await fetch(`${serverUrl}/api/iot/private`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -83,38 +79,54 @@ const TestPage = () => {
     }
   };
 
-  if (isLoading) {
-    <Loading />;
-  }
+  const callPrivateScopedIotApi = async () => {
+    try {
+      const token = await getAccessToken({
+        ignoreCache: true,
+        scope: 'test-role',
+      });
+
+      const response = await fetch(`${serverUrl}/api/iot/private-scoped`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      setMessage(responseData.message);
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
 
   return (
     <Container className="mb-5">
       <h1 className="d-flex justify-content-center">{t("title")}</h1>
       <Alert variant="danger"> Use these buttons to call an external API. The protected API call has an
         access token in its authorization header. The API server will validate
-        the access token using the Auth0 Audience value. </Alert>
-      <ButtonGroup>
-        <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
-          Get public message
-        </Button>
-        <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1">
-          Get private message
-        </Button>
-        <Button
-          onClick={callPrivateScopedApiReadMessages}
-          color="primary"
-          className="mt-5 m-1"
-        >
-          Get private-scoped message (read:messages)
-        </Button>
-        <Button
-          onClick={callPrivateScopedApiEditDevices}
-          color="primary"
-          className="mt-5 m-1"
-        >
-          Get private-scoped message (edit:devices)
-        </Button>
-      </ButtonGroup>
+        the access token using the Keycloak Audience value. </Alert>
+        <ButtonGroup>
+          <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
+            Get public message
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1">
+            Get private message
+          </Button>
+          <Button onClick={callPrivateScopedApi} color="primary" className="mt-5 m-1">
+            Get private-scoped message
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button onClick={callPrivateIotApi} color="primary" className="mt-5 m-1">
+            Get private iot message
+          </Button>
+          <Button onClick={callPrivateScopedIotApi} color="primary" className="mt-5 m-1">
+            Get private-scoped iot message
+          </Button>
+        </ButtonGroup>
       {message && (
         <div className="mt-5">
           <h6 className="muted">Result</h6>
