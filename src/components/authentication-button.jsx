@@ -1,12 +1,12 @@
 import React from "react";
-import { dummyAuth0 } from "../auth/dummy-auth0";
+import { useKeycloak } from "@react-keycloak/web";
 import LoginButton from "./login-button";
 import LogoutButton from "./logout-button";
 
 const AuthenticationButton = () => {
-  const { isAuthenticated } = dummyAuth0();
+  const { keycloak } = useKeycloak();
 
-  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
+  return keycloak.authenticated ? <LogoutButton /> : <LoginButton />;
 };
 
 export default AuthenticationButton;

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { dummyAuth0 } from "../auth/dummy-auth0";
+import React, { useState, useEffect, use } from "react";
+import { useKeycloak } from "@react-keycloak/web";
 import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import UserTable from "./user-table";
 
 function UserPage(props) {
+  const { keycloak } = useKeycloak();
   const [users, setUsers] = useState([]);
   const [result, setResult] = useState({ hasError: false });
-
-  const { getAccessToken, isLoading } = dummyAuth0();
   
   const deleteUser = (id) => {
     window.confirm(`Deleting user with id ${id}`);
@@ -35,10 +34,10 @@ function UserPage(props) {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const token = await getAccessToken();
+        const token = keycloak.token;
 
         const response = await fetch(
-          process.env.REACT_APP_SERVER_ENDPOINT + "/management/user/v2",
+          process.env.REACT_APP_KEYCLOAK_URL + "/admin/realms/" + process.env.REACT_APP_KEYCLOAK_REALM + "/users",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -50,14 +49,15 @@ function UserPage(props) {
 
         setUsers(responseData);
       } catch (error) {
-        setResult({ hasError: true, message: error.message });
+        // setResult({ hasError: true, message: error.message });
+        setUsers("!!!!!" + error.message);
       }
     };
 
     getUsers();
-  }, [getAccessTokenSilently]);
+  }, [keycloak]);
 
-  if (isLoading) {
+  if (!users) {
     <Loading />;
   }
 
@@ -65,11 +65,15 @@ function UserPage(props) {
     <Container fluid>
       <Row>
         <Col>
-          {!result.hasError ? (
+        <pre className="col-12 text-light bg-dark p-4">
+            {JSON.stringify(users, null, 2)}
+          </pre>
+
+          {/* {!result.hasError ? (
             <UserTable users={users} deleteUser={deleteUser} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
-          )}
+          )} */}
         </Col>
       </Row>
     </Container>

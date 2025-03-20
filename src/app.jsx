@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { dummyAuth0 } from "./auth/dummy-auth0";
+import PrivateRoute from "./helpers/private-route";
 import NavigationBar from "./components/navigation-bar";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -33,10 +34,10 @@ function App(props) {
           <Route path="/home" element={<HomePage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/sopfeu" element={<SopfeuPage />} />
-          <Route path="/device" element={<DevicePage />} />
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/device" element={<PrivateRoute><DevicePage/></PrivateRoute>} />
+          <Route path="/user" element={<PrivateRoute><UserPage/></PrivateRoute>} />
+          <Route path="/profile" element={<PrivateRoute><ProfilePage/></PrivateRoute>} />
+          <Route path="/test" element={<TestPage/>} />
           <Route path="/support" element={<SupportPage />} />
           <Route path="*" element={<NoMatchPage />} />
         </Routes>

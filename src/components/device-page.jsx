@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { dummyAuth0 } from "../auth/dummy-auth0";
+import { useKeycloak } from "@react-keycloak/web";
 import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import DeviceTable from "./device-table";
 
 function DevicePage(props) {
   const { t } = useTranslation(["device", "common"]);
+  const { keycloak } = useKeycloak();
 
   const [devices, setDevices] = useState([]);
   const [result, setResult] = useState({ hasError: false });
 
-  const { getAccessToken, isLoading } = dummyAuth0();
-
   useEffect(() => {
     const getDevices = async () => {
       try {
-        const token = await getAccessToken();
+        const token = keycloak.token;
 
         const response = await fetch(
-          process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2",
+          process.env.REACT_APP_SERVER_ENDPOINT + "/device/v3",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -36,7 +35,7 @@ function DevicePage(props) {
     };
 
     getDevices();
-  }, [getAccessToken]);
+  }, [keycloak]);
 
   const updateDeviceOwner = async (device) => {
 
@@ -49,10 +48,10 @@ function DevicePage(props) {
     };
 
     try {
-      const token = await getAccessToken();
+      const token = keycloak.token;
 
       const response = await fetch(
-        process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2/owner",
+        process.env.REACT_APP_SERVER_ENDPOINT + "/device/v3/owner",
         {
           method: "PUT",
           headers: {
@@ -87,10 +86,10 @@ function DevicePage(props) {
     };
 
     try {
-      const token = await getAccessToken();
+      const token = keycloak.token;
 
       const response = await fetch(
-        process.env.REACT_APP_SERVER_ENDPOINT + "/device/v2/lock-version",
+        process.env.REACT_APP_SERVER_ENDPOINT + "/device/v3/lock-version",
         {
           method: "PUT",
           headers: {
@@ -118,7 +117,7 @@ function DevicePage(props) {
     }
   };
 
-  if (isLoading) {
+  if (!devices) {
     <Loading />;
   }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { dummyAuth0 } from "../auth/dummy-auth0";
+import { useKeycloak } from "@react-keycloak/web";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -19,7 +19,7 @@ const NavigationBar = () => {
     "test",
   ]);
 
-  const { isAuthenticated } = dummyAuth0();
+  const { keycloak } = useKeycloak();
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -30,13 +30,13 @@ const NavigationBar = () => {
             <Nav.Link href="/">{t("home:title")}</Nav.Link>
             <Nav.Link href="/map">{t("map:title")}</Nav.Link>
             <Nav.Link href="/sopfeu">{t("sopfeu:title")}</Nav.Link>
-            {isAuthenticated && (
+            {keycloak.authenticated && (
               <Nav.Link href="/device">{t("device:title")}</Nav.Link>
             )}
-            {isAuthenticated && (
+            {keycloak.authenticated && (
               <Nav.Link href="/user">{t("user:title")}</Nav.Link>
             )}
-            {isAuthenticated && (
+            {keycloak.authenticated && (
               <Nav.Link href="/profile">{t("profile:title")}</Nav.Link>
             )}
             <Nav.Link href="/test">{t("test:title")}</Nav.Link>

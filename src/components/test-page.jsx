@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { dummyAuth0 } from "../auth/dummy-auth0";
+import { useKeycloak } from "@react-keycloak/web";
 import { Container, ButtonGroup, Button, Alert } from "react-bootstrap";
 
 const TestPage = () => {
@@ -8,7 +8,7 @@ const TestPage = () => {
   const [message, setMessage] = useState("");
   const serverUrl = process.env.REACT_APP_SERVER_ENDPOINT;
 
-  const { getAccessToken } = dummyAuth0();
+  const { keycloak } = useKeycloak();
 
   const callPublicApi = async () => {
     try {
@@ -24,7 +24,7 @@ const TestPage = () => {
 
   const callPrivateApi = async () => {
     try {
-      const token = await getAccessToken();
+      const token = keycloak.token;
 
       const response = await fetch(`${serverUrl}/api/private`, {
         headers: {
@@ -42,10 +42,7 @@ const TestPage = () => {
 
   const callPrivateScopedApi = async () => {
     try {
-      const token = await getAccessToken({
-        ignoreCache: true,
-        scope: 'test-role',
-      });
+      const token = keycloak.token;
 
       const response = await fetch(`${serverUrl}/api/private-scoped`, {
         headers: {
@@ -57,46 +54,7 @@ const TestPage = () => {
 
       setMessage(responseData.message);
     } catch (error) {
-      setMessage(error.message);
-    }
-  };
-
-  const callPrivateIotApi = async () => {
-    try {
-      const token = await getAccessToken();
-
-      const response = await fetch(`${serverUrl}/api/iot/private`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responseData = await response.json();
-
-      setMessage(responseData.message);
-    } catch (error) {
-      setMessage(error.message);
-    }
-  };
-
-  const callPrivateScopedIotApi = async () => {
-    try {
-      const token = await getAccessToken({
-        ignoreCache: true,
-        scope: 'test-role',
-      });
-
-      const response = await fetch(`${serverUrl}/api/iot/private-scoped`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responseData = await response.json();
-
-      setMessage(responseData.message);
-    } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message + "------------------" + keycloak.token);
     }
   };
 
@@ -106,25 +64,15 @@ const TestPage = () => {
       <Alert variant="danger"> Use these buttons to call an external API. The protected API call has an
         access token in its authorization header. The API server will validate
         the access token using the Keycloak Audience value. </Alert>
-        <ButtonGroup>
+        <ButtonGroup className="d-flex justify-content-center">
           <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
             Get public message
           </Button>
-        </ButtonGroup>
-        <ButtonGroup>
           <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1">
             Get private message
           </Button>
           <Button onClick={callPrivateScopedApi} color="primary" className="mt-5 m-1">
             Get private-scoped message
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button onClick={callPrivateIotApi} color="primary" className="mt-5 m-1">
-            Get private iot message
-          </Button>
-          <Button onClick={callPrivateScopedIotApi} color="primary" className="mt-5 m-1">
-            Get private-scoped iot message
           </Button>
         </ButtonGroup>
       {message && (

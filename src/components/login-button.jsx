@@ -1,15 +1,18 @@
 import React from "react";
-import { dummyAuth0 } from "../auth/dummy-auth0";
 import { useTranslation } from "react-i18next";
+import { useKeycloak } from "@react-keycloak/web";
 import Button from "react-bootstrap/Button";
 
 const LoginButton = () => {
   const { t } = useTranslation(["common"]);
-  const { login } = dummyAuth0();
+  const { keycloak } = useKeycloak();
 
   return (
     <Button
-      onClick={() => login()}
+      onClick={() => keycloak.login({
+        // action: "register",
+        locale: "fr",
+      })}
       variant="outline-success"
       className="btn-margin"
     >
