@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { dummyAuth0 } from "./auth/dummy-auth0";
+import { useKeycloak } from "@react-keycloak/web";
 import PrivateRoute from "./helpers/private-route";
 import NavigationBar from "./components/navigation-bar";
 import Header from "./components/header";
@@ -18,9 +18,9 @@ import SupportPage from "./components/support-page";
 import NoMatchPage from "./components/no-match-page";
 
 function App(props) {
-  const { isLoading } = dummyAuth0();
+  const { initialized } = useKeycloak();
 
-  if (isLoading) {
+  if (!initialized) {
     <Loading />;
   }
 

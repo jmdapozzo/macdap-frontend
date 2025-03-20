@@ -54,7 +54,7 @@ const TestPage = () => {
 
       setMessage(responseData.message);
     } catch (error) {
-      setMessage(error.message + "------------------" + keycloak.token);
+      setMessage(error.message);
     }
   };
 
@@ -68,10 +68,10 @@ const TestPage = () => {
           <Button onClick={callPublicApi} color="primary" className="mt-5 m-1">
             Get public message
           </Button>
-          <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1">
+          <Button onClick={callPrivateApi} color="primary" className="mt-5 m-1" disabled={!keycloak.authenticated}>
             Get private message
           </Button>
-          <Button onClick={callPrivateScopedApi} color="primary" className="mt-5 m-1">
+          <Button onClick={callPrivateScopedApi} color="primary" className="mt-5 m-1" disabled={!keycloak.authenticated}>
             Get private-scoped message
           </Button>
         </ButtonGroup>

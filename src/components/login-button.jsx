@@ -9,10 +9,7 @@ const LoginButton = () => {
 
   return (
     <Button
-      onClick={() => keycloak.login({
-        // action: "register",
-        locale: "fr",
-      })}
+      onClick={() => keycloak.login()}
       variant="outline-success"
       className="btn-margin"
     >

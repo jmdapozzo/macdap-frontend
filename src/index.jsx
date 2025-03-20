@@ -17,7 +17,7 @@ root.render(
   <ReactKeycloakProvider authClient={keycloak}>
     <React.StrictMode>
       <Suspense fallback={<Loading />}>
-        <BrowserRouter>
+      <BrowserRouter>
           <App />
         </BrowserRouter>
       </Suspense>

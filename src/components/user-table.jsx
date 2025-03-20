@@ -40,8 +40,8 @@ function UserTable(props) {
         </thead>
         <tbody>
           {props.users.map((user, index) => (
-            <tr key={user.user_id}>
-              <td> {user.name} </td>
+            <tr key={user.id}>
+              <td> {user.username} </td>
               <td> {user.email} </td>
               <td> {user.phone_number} </td>
               <td>
@@ -60,7 +60,7 @@ function UserTable(props) {
                     <Button
                       variant="success"
                       className="me-2"
-                      onClick={() => handleEditUser(user.user_id)}
+                      onClick={() => handleEditUser(user.id)}
                     >
                       <FaUserEdit />
                     </Button>
@@ -75,7 +75,7 @@ function UserTable(props) {
                   >
                     <Button
                       variant="success"
-                      onClick={() => handleDeleteUser(user.user_id)}
+                      onClick={() => handleDeleteUser(user.id)}
                     >
                       <FaTrashAlt />
                     </Button>

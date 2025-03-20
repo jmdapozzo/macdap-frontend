@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
@@ -49,9 +49,8 @@ function UserPage(props) {
 
         setUsers(responseData);
       } catch (error) {
-        // setResult({ hasError: true, message: error.message });
-        setUsers("!!!!!" + error.message);
-      }
+        setResult({ hasError: true, message: error.message });
+        }
     };
 
     getUsers();
@@ -65,15 +64,14 @@ function UserPage(props) {
     <Container fluid>
       <Row>
         <Col>
-        <pre className="col-12 text-light bg-dark p-4">
-            {JSON.stringify(users, null, 2)}
-          </pre>
-
-          {/* {!result.hasError ? (
+          {!result.hasError ? (
             <UserTable users={users} deleteUser={deleteUser} />
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
-          )} */}
+          )}
+          <pre className="col-12 text-light bg-dark p-4">
+            {JSON.stringify(users, null, 2)}
+          </pre>
         </Col>
       </Row>
     </Container>
