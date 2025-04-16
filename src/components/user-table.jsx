@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useKeycloak } from "@react-keycloak/web";
 import { Table, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import { FaUserEdit, FaTrashAlt } from "react-icons/fa";
 import moment from "moment";
@@ -8,7 +9,9 @@ import UserForm from "./user-form";
 
 function UserTable(props) {
   const { t } = useTranslation(["user", "common"]);
+  const { keycloak } = useKeycloak();
   const [selectedUserIndex, setSelectedUserIndex] = useState(null);
+  const [userInfo, setUserInfo] = useState([]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -26,6 +29,17 @@ function UserTable(props) {
     }
   };
 
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const userInfo = await keycloak.loadUserInfo();
+      setUserInfo(userInfo);
+      console.log(userInfo);
+    }
+
+    getUserInfo();
+  }, [keycloak]);
+  
+  
   return (
     <div>
       <Table responsive hover striped bordered size="sm">
@@ -43,7 +57,7 @@ function UserTable(props) {
             <tr key={user.id}>
               <td> {user.username} </td>
               <td> {user.email} </td>
-              <td> {user.phone_number} </td>
+              <td> {user.id} </td>
               <td>
                 {moment
                   .duration(moment(user.last_login).diff(moment()))
@@ -61,6 +75,7 @@ function UserTable(props) {
                       variant="success"
                       className="me-2"
                       onClick={() => handleEditUser(user.id)}
+                      disabled={user.id === userInfo.sub}
                     >
                       <FaUserEdit />
                     </Button>
@@ -76,6 +91,7 @@ function UserTable(props) {
                     <Button
                       variant="success"
                       onClick={() => handleDeleteUser(user.id)}
+                      disabled={user.id === userInfo.sub}
                     >
                       <FaTrashAlt />
                     </Button>

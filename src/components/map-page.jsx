@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Container } from "react-bootstrap";
 import { Map, Marker } from "mapkit-react";
 
+// voir https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
+// voir exemple de Apple avec génération token por Node https://developer.apple.com/documentation/mapkitjs/mapkit/init
+
 const MapPage = () => {
   const { t } = useTranslation(["map"]);
 /*

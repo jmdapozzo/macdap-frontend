@@ -10,25 +10,16 @@ function UserPage(props) {
   const [result, setResult] = useState({ hasError: false });
   
   const deleteUser = (id) => {
-    window.confirm(`Deleting user with id ${id}`);
-    const updatedItems = users.filter((user) => user.user_id !== id);
+    const token = keycloak.token;
+    const updatedItems = users.filter((user) => user.id !== id);
     setUsers(updatedItems);
-    /*
-      fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/users", {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id,
-        }),
-      })
-        .then((response) => response.json())
-        .then((item) => {
-          users.deleteItemFromState(id);
-        })
-        .catch((err) => console.log(err));
-        */
+    fetch(process.env.REACT_APP_KEYCLOAK_URL + "/admin/realms/" + process.env.REACT_APP_KEYCLOAK_REALM + "/users/" + id, {
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -37,8 +28,7 @@ function UserPage(props) {
         const token = keycloak.token;
 
         const response = await fetch(
-          process.env.REACT_APP_KEYCLOAK_URL + "/admin/realms/" + process.env.REACT_APP_KEYCLOAK_REALM + "/users",
-          {
+          process.env.REACT_APP_KEYCLOAK_URL + "/admin/realms/" + process.env.REACT_APP_KEYCLOAK_REALM + "/users", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -69,9 +59,9 @@ function UserPage(props) {
           ) : (
             <Alert variant="danger"> {result.message} </Alert>
           )}
-          <pre className="col-12 text-light bg-dark p-4">
+          {/* <pre className="col-12 text-light bg-dark p-4">
             {JSON.stringify(users, null, 2)}
-          </pre>
+          </pre> */}
         </Col>
       </Row>
     </Container>
