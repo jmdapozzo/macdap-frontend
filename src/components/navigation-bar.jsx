@@ -28,8 +28,12 @@ const NavigationBar = () => {
         <Navbar.Collapse>
           <Nav>
             <Nav.Link href="/">{t("home:title")}</Nav.Link>
-            <Nav.Link href="/map">{t("map:title")}</Nav.Link>
-            <Nav.Link href="/sopfeu">{t("sopfeu:title")}</Nav.Link>
+            {keycloak.authenticated && (
+              <Nav.Link href="/map">{t("map:title")}</Nav.Link>
+          )}
+            {keycloak.authenticated && (
+              <Nav.Link href="/sopfeu">{t("sopfeu:title")}</Nav.Link>
+          )}
             {keycloak.authenticated && (
               <Nav.Link href="/device">{t("device:title")}</Nav.Link>
             )}

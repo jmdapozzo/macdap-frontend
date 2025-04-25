@@ -32,8 +32,8 @@ function App(props) {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/map" element={<MapPage />} />
-          <Route path="/sopfeu" element={<SopfeuPage />} />
+          <Route path="/map" element={<PrivateRoute><MapPage/></PrivateRoute>} />
+          <Route path="/sopfeu" element={<PrivateRoute><SopfeuPage/></PrivateRoute>} />
           <Route path="/device" element={<PrivateRoute><DevicePage/></PrivateRoute>} />
           <Route path="/user" element={<PrivateRoute><UserPage/></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><ProfilePage/></PrivateRoute>} />

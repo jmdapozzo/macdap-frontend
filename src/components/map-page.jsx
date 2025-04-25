@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-// import { useKeycloak } from "@react-keycloak/web";
+import { useKeycloak } from "@react-keycloak/web";
 import { Container } from "react-bootstrap";
 import { Map, Marker } from "mapkit-react";
 import Loading from "./loading";
@@ -10,7 +10,7 @@ import Loading from "./loading";
 
 const MapPage = () => {
   const { t } = useTranslation(["map"]);
-  // const { keycloak } = useKeycloak();
+  const { keycloak } = useKeycloak();
   const [markerPositions, setMarkerPositions] = useState([]);
   const [mapToken, setMapToken] = useState(null);
   const [error, setError] = useState(null);
@@ -33,44 +33,14 @@ const MapPage = () => {
     longitudeDelta: 1.0,
   };
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_ENDPOINT}/mapjwt/xx`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch the map token");
-        }
-        const data = await response.json();
-        console.log("---------------- map token", data.token);
-        setMapToken(data.token);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchToken();
-  }, []);
-
   // useEffect(() => {
   //   const fetchToken = async () => {
   //     try {
-
-  //       const token = keycloak.token;
-  //       console.log("---------------- keycloak token", token);
-  //       const response = await fetch(
-  //         process.env.REACT_APP_SERVER_ENDPOINT + "/mapjwt/xx",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
-
+  //       const response = await fetch(`${process.env.REACT_APP_SERVER_ENDPOINT}/mapjwt/v1`);
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch the map token");
   //       }
   //       const data = await response.json();
-  //       console.log("---------------- map token", token);
   //       setMapToken(data.token);
   //     } catch (err) {
   //       setError(err.message);
@@ -78,7 +48,34 @@ const MapPage = () => {
   //   };
 
   //   fetchToken();
-  // }, [keycloak]);
+  // }, []);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+
+        const token = keycloak.token;
+        const response = await fetch(
+          process.env.REACT_APP_SERVER_ENDPOINT + "/mapjwt/v1",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch the map token");
+        }
+        const data = await response.json();
+        setMapToken(data.token);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchToken();
+  }, [keycloak]);
 
   if (error) {
     return <div>Error: {error}</div>;
