@@ -1,6 +1,7 @@
 {
     "name": "macdap-frontend",
     "version": "3.1.0",
+    "homepage": ".",
     "private": true,
     "dependencies": {
         "@react-keycloak/web": "^3.4.0",
