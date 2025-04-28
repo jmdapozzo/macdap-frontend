@@ -8,6 +8,8 @@ import Loading from "./loading";
 // voir https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
 // voir exemple de Apple avec génération token por Node https://developer.apple.com/documentation/mapkitjs/mapkit/init
 
+const package_json = require("../../package.json");
+
 const MapPage = () => {
   const { t } = useTranslation(["map"]);
   const { keycloak } = useKeycloak();
@@ -33,23 +35,6 @@ const MapPage = () => {
     longitudeDelta: 1.0,
   };
 
-  // useEffect(() => {
-  //   const fetchToken = async () => {
-  //     try {
-  //       const response = await fetch(`${process.env.REACT_APP_SERVER_ENDPOINT}/mapjwt/v1`);
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch the map token");
-  //       }
-  //       const data = await response.json();
-  //       setMapToken(data.token);
-  //     } catch (err) {
-  //       setError(err.message);
-  //     }
-  //   };
-
-  //   fetchToken();
-  // }, []);
-
   useEffect(() => {
     const fetchToken = async () => {
       try {
@@ -60,6 +45,10 @@ const MapPage = () => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
+              "macdap-app-title": "macdap-frontend",
+              "macdap-app-version": package_json.version,
+              "macdap-platform-type": navigator.userAgent,
+              "macdap-platform-macdap-platform-id": navigator.platform
             },
           }
         );

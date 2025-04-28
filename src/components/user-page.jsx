@@ -47,7 +47,7 @@ function UserPage(props) {
   }, [keycloak]);
 
   if (!users) {
-    <Loading />;
+    return <Loading />;
   }
 
   return (

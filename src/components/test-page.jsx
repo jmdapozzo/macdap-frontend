@@ -3,16 +3,23 @@ import { useTranslation } from "react-i18next";
 import { useKeycloak } from "@react-keycloak/web";
 import { Container, ButtonGroup, Button, Alert } from "react-bootstrap";
 
+const package_json = require("../../package.json");
+
 const TestPage = () => {
   const { t } = useTranslation(["test"]);
-  const [message, setMessage] = useState("");
-  const serverUrl = process.env.REACT_APP_SERVER_ENDPOINT;
-
   const { keycloak } = useKeycloak();
+  const [message, setMessage] = useState("");
 
   const callPublicApi = async () => {
     try {
-      const response = await fetch(`${serverUrl}/api/public`);
+      const response = await fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/api/public", {
+        headers: {
+          "macdap-app-title": "macdap-frontend",
+          "macdap-app-version": package_json.version,
+          "macdap-platform-type": navigator.userAgent,
+          "macdap-platform-macdap-platform-id": navigator.platform,
+        },
+      });
 
       const responseData = await response.json();
 
@@ -26,7 +33,7 @@ const TestPage = () => {
     try {
       const token = keycloak.token;
 
-      const response = await fetch(`${serverUrl}/api/private`, {
+      const response = await fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/api/private", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,7 +51,7 @@ const TestPage = () => {
     try {
       const token = keycloak.token;
 
-      const response = await fetch(`${serverUrl}/api/private-scoped`, {
+      const response = await fetch(process.env.REACT_APP_SERVER_ENDPOINT + "/api/private-scoped", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

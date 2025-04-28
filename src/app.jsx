@@ -21,7 +21,7 @@ function App(props) {
   const { initialized } = useKeycloak();
 
   if (!initialized) {
-    <Loading />;
+    return <Loading />;
   }
 
   return (

@@ -5,6 +5,8 @@ import Loading from "./loading";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import DeviceTable from "./device-table";
 
+const package_json = require("../../package.json");
+
 function DevicePage(props) {
   const { t } = useTranslation(["device", "common"]);
   const { keycloak } = useKeycloak();
@@ -22,6 +24,10 @@ function DevicePage(props) {
           {
             headers: {
               Authorization: `Bearer ${token}`,
+              "macdap-app-title": "macdap-frontend",
+              "macdap-app-version": package_json.version,
+              "macdap-platform-type": navigator.userAgent,
+              "macdap-platform-macdap-platform-id": navigator.platform
             },
           }
         );
@@ -57,6 +63,10 @@ function DevicePage(props) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
+            "macdap-app-title": "macdap-frontend",
+            "macdap-app-version": package_json.version,
+            "macdap-platform-type": navigator.userAgent,
+            "macdap-platform-macdap-platform-id": navigator.platform
           },
           body: JSON.stringify(bodyData),
         }
@@ -95,6 +105,10 @@ function DevicePage(props) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
+            "macdap-app-title": "macdap-frontend",
+            "macdap-app-version": package_json.version,
+            "macdap-platform-type": navigator.userAgent,
+            "macdap-platform-macdap-platform-id": navigator.platform
           },
           body: JSON.stringify(bodyData),
         }
@@ -118,7 +132,7 @@ function DevicePage(props) {
   };
 
   if (!devices) {
-    <Loading />;
+    return <Loading />;
   }
 
   return (
